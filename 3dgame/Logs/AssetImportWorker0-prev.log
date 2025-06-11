@@ -228,3 +228,19 @@ Received Import Request.
 Start importing Assets/_GameAssets/Models/Extra/Cat.fbx using Guid(edd9162535108f749b8a98bf3bf0b222) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fda5d9891f54440328f4e4aafb70900b') in 0.4871717 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 117
 
+========================================================================
+Received Import Request.
+  Time since last request: 1838.345400 seconds.
+  path: Assets/_GameAssets/Models/Extra
+  artifactKey: Guid(d3a04675ff5670246be6c5c9152a9c3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_GameAssets/Models/Extra using Guid(d3a04675ff5670246be6c5c9152a9c3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a804da005139ed00df6c8883dc2fa313') in 0.0007647 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.310276 seconds.
+  path: Assets/_GameAssets/Prefabs
+  artifactKey: Guid(b63eae1cb77f15142b1964fcf20253e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_GameAssets/Prefabs using Guid(b63eae1cb77f15142b1964fcf20253e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c98c8113fcd49dfe497e33497c346249') in 0.0006168 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
