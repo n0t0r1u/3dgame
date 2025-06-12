@@ -20,10 +20,10 @@
 //            {
 //                animator.SetBool("Run", true);
 //            }
-//            if (Input.GetKeyUp(KeyCode.W))
+//            if (Input.GetKeyUp(KeyCode.W))a
 //            {
 //                {
-//                    // Hiçbir tuþ basýlý deðilse "Run" animasyonunu durdur
+//                    // Hiï¿½bir tuï¿½ basï¿½lï¿½ deï¿½ilse "Run" animasyonunu durdur
 //                    animator.SetBool("Run", false);
 //                }
 //            }
@@ -34,7 +34,7 @@
 //            if (Input.GetKeyUp(KeyCode.A))
 //            {
 //                {
-//                    // Hiçbir tuþ basýlý deðilse "Run" animasyonunu durdur
+//                    // Hiï¿½bir tuï¿½ basï¿½lï¿½ deï¿½ilse "Run" animasyonunu durdur
 //                    animator.SetBool("Run", false);
 //                }
 //            }
@@ -45,7 +45,7 @@
 //            if (Input.GetKeyUp(KeyCode.S))
 //            {
 //                {
-//                    // Hiçbir tuþ basýlý deðilse "Run" animasyonunu durdur
+//                    // Hiï¿½bir tuï¿½ basï¿½lï¿½ deï¿½ilse "Run" animasyonunu durdur
 //                    animator.SetBool("Run", false);
 //                }
 //            }
@@ -56,7 +56,7 @@
 //            if (Input.GetKeyUp(KeyCode.D))
 //            {
 //                {
-//                    // Hiçbir tuþ basýlý deðilse "Run" animasyonunu durdur
+//                    // Hiï¿½bir tuï¿½ basï¿½lï¿½ deï¿½ilse "Run" animasyonunu durdur
 //                    animator.SetBool("Run", false);
 //                }
 //            }
@@ -71,6 +71,10 @@ public class AnimationController : MonoBehaviour
     public Animator animator;
     private KeyCode[] movementKeys = { KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D };
 
+    private int comboIndex = 0;
+    private float attackTimer = 0f;
+    private float comboCooldown = 0.6f; // animasyonlar arasÄ± sÃ¼re
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -78,22 +82,39 @@ public class AnimationController : MonoBehaviour
 
     void Update()
     {
-        if (animator != null)
+        if (animator == null) return;
+
+        // Hareket kontrolÃ¼
+        bool isMoving = false;
+        foreach (KeyCode key in movementKeys)
         {
-            bool isMoving = false;
-
-            // Tüm hareket tuþlarýný kontrol et
-            foreach (KeyCode key in movementKeys)
+            if (Input.GetKey(key))
             {
-                if (Input.GetKey(key))
-                {
-                    isMoving = true;
-                    break;  // Eðer bir tuþa basýldýysa, hemen durdur
-                }
+                isMoving = true;
+                break;
             }
+        }
+        animator.SetBool("Run", isMoving);
 
-            // Animator parametresini güncelle
-            animator.SetBool("Run", isMoving);
+        // SaldÄ±rÄ± kontrolÃ¼ (basÄ±lÄ± tutulunca)
+        bool isAttacking = Input.GetMouseButton(0);
+        animator.SetBool("IsAttacking", isAttacking);
+
+        if (isAttacking)
+        {
+            attackTimer += Time.deltaTime;
+            if (attackTimer >= comboCooldown)
+            {
+                attackTimer = 0f;
+                comboIndex = (comboIndex + 1) % 6; // 0â€“5 arasÄ± dÃ¶ner
+                animator.SetInteger("ComboIndex", comboIndex);
+            }
+        }
+        else
+        {
+            comboIndex = 0;
+            attackTimer = 0f;
+            animator.SetInteger("ComboIndex", comboIndex);
         }
     }
 }
