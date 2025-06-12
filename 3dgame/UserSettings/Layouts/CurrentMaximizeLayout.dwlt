@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 2712
+  controlID: 67768
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -67,14 +67,14 @@ MonoBehaviour:
     - {fileID: -2381818842514845479, guid: cfb6455ff4a447e4a983bba0f332fad5, type: 2}
     - {fileID: 3711422879430752671, guid: 9145b7de98fe2e540a228b11cbe50094, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.5289923
+    - e00: 2.2034733
       e01: 0
       e02: 0
-      e03: -132.92029
+      e03: -1055.3708
       e10: 0
-      e11: 0.5289923
+      e11: 2.2034733
       e12: 0
-      e13: 239.77182
+      e13: 242.17581
       e20: 0
       e21: 0
       e22: 1
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 0
-  controlID: 2713
+  controlID: 67769
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 2714
+  controlID: 67770
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -802,8 +802,8 @@ MonoBehaviour:
     y: 519
     width: 1131
     height: 462
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 9}
   m_Panes:
   - {fileID: 9}
@@ -935,7 +935,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 55
+  controlID: 67814
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -956,8 +956,8 @@ MonoBehaviour:
     y: 0
     width: 349
     height: 571
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 9488f9ff
+      m_SelectedIDs: 5889f5ff
       m_LastClickedID: 0
       m_ExpandedIDs: 4e65fbff5265fbff5665fbff6665fbff6a65fbff6e65fbff7265fbffaa65fbffae65fbffb265fbffc265fbfffe12fcff0213fcff0613fcffaa1afcffae1afcffb61afcffba1afcffbe1afcffc21afcffc61afcffc67efcff26cbfdff2acbfdff32cbfdff36cbfdff3ecbfdff42cbfdff4acbfdff52cbfdff56cbfdff5acbfdff62cbfdff66cbfdff6acbfdff72cbfdff76cbfdff7acbfdff82cbfdff86cbfdff8acbfdff92cbfdff96cbfdff9acbfdff9ecbfdffa2cbfdffa6cbfdffaacbfdffb2cbfdffbacbfdffbecbfdffc2cbfdffcacbfdffcecbfdffd2cbfdffdacbfdffdecbfdffe2cbfdffeacbfdffeecbfdfff2cbfdfffacbfdfffecbfdff02ccfdff06ccfdff0accfdff0eccfdff12ccfdff1accfdff1eccfdff22ccfdff26ccfdff2accfdff32ccfdff36ccfdff3accfdff3eccfdff46ccfdff4accfdff4eccfdff52ccfdff5accfdff5eccfdff62ccfdff66ccfdff6eccfdff72ccfdff76ccfdff7accfdff7eccfdfff8cdfdff10cefdff74cefdff78cefdff7ccefdff80cefdff88cefdff04cffdff0ccffdff10cffdff14cffdff18cffdff24cffdff28cffdff34cffdff38cffdff3ccffdff50cffdff58cffdff5ecffdff68cffdfff8faffffa4ab0000b6ab0000
       m_RenameOverlay:
@@ -1102,7 +1102,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_GameAssets/Male/OnehandSword
+    - Assets/_GameAssets/Male/General
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1121,7 +1121,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 54b30000
     m_LastClickedID: 45908
-    m_ExpandedIDs: 00000000f8ac0000faac0000fcac0000feac000000ad000002ad000004ad000006ad000008ad00000aad00000cad00000ead000010ad000012ad000014ad000016ad000018ad00001aad00001cad00001ead000020ad000022ad000024ad000026ad000028ad00002aad00002cad00002ead000030ad000032ad0000
+    m_ExpandedIDs: ffffffff00000000f8ac0000faac0000fcac0000feac000000ad000002ad000004ad000006ad000008ad00000aad00000cad00000ead000010ad000012ad000014ad000016ad000018ad00001aad00001cad00001ead000020ad000022ad000028ad00002aad00002cad00002ead0000c8af0000feaf000000b00000c2b50000e0b500000cb600001eb60000bcb6000056b800004ab9000080b90000e0bf0000f6c1000072c60000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1147,8 +1147,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 606}
-    m_SelectedIDs: 9488f9ff
+    scrollPos: {x: 0, y: 4846}
+    m_SelectedIDs: 5889f5ff
     m_LastClickedID: 0
     m_ExpandedIDs: ffffffff00000000f8ac0000faac0000fcac0000feac000000ad000002ad000004ad000006ad000008ad00000aad00000cad00000ead000010ad000012ad000014ad000016ad000018ad00001aad00001cad00001ead000020ad000022ad000028ad00002aad00002cad00002ead0000c8af0000feaf000000b00000c2b50000e0b500000cb600001eb60000bcb6000056b800004ab9000080b90000e0bf0000f6c1000072c60000
     m_RenameOverlay:
@@ -1176,8 +1176,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 9488f9ff
-    m_LastClickedInstanceID: -423788
+    m_SelectedInstanceIDs: 5889f5ff
+    m_LastClickedInstanceID: -685736
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300000000000030cb000008a60000a6b8000032030100
     m_RenameOverlay:

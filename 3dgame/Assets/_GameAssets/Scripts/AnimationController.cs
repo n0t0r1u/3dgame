@@ -106,7 +106,7 @@ public class AnimationController : MonoBehaviour
             if (attackTimer >= comboCooldown)
             {
                 attackTimer = 0f;
-                comboIndex = (comboIndex + 1) % 6; // 0–5 arası döner
+                comboIndex = (comboIndex + 1) % 7; // 0–6 arası döner
                 animator.SetInteger("ComboIndex", comboIndex);
             }
         }

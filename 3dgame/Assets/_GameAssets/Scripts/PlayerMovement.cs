@@ -111,62 +111,64 @@ public class PlayerMovement : MonoBehaviour
 {
     public Transform cameraTransform; // Kameranın Transform bileşeni
     public float moveSpeed = 5.0f;    // Karakterin hareket hızı
+    public float attackMoveMultiplier = 2.0f; // Saldırı sırasında hareket hızı çarpanı
+    public float attackAutoMoveSpeed = 2.0f; // Saldırı sırasında otomatik ileri hareket hızı
     public Animator animator;         // Animator bileşeni
 
     private Vector3 moveDirection;    // Hareket yönü
 
     void Start()
     {
-        // Animator bileşenini al
         animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        // Yatay (A/D veya Sol/Sağ ok tuşları) ve dikey (W/S veya Yukarı/Aşağı ok tuşları) girişlerini al
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        // Eğer hiçbir giriş yoksa hareket etme
-        if (horizontalInput == 0 && verticalInput == 0)
-        {
-            // Animasyon durduğunda hareketi durdur
-            if (animator.GetBool("Run"))
-            {
-                animator.SetBool("Run", false); // "Run" animasyonunu durdur
-            }
+        bool isMoving = (horizontalInput != 0 || verticalInput != 0);
 
-            // Hareketi durdur
-            moveDirection = Vector3.zero;
-            return; // Hiçbir hareket yoksa fonksiyonu bitir
-        }
+        // Saldırı var mı kontrol et (ör. sol mouse tuşu)
+        bool isAttacking = Input.GetMouseButton(0);
+        animator.SetBool("IsAttacking", isAttacking);
 
-        // Kameranın yönlerine göre hareket vektörünü oluştur
-        Vector3 forward = cameraTransform.forward; // Kameranın ileri yönü
-        Vector3 right = cameraTransform.right;     // Kameranın sağ yönü
+        // Hareket animasyonunu yönet
+        animator.SetBool("Run", isMoving || isAttacking); // Saldırıda da Run'ı true yap!
 
-        // Y eksenindeki eğimi sıfırla, sadece yatay düzlemde hareket et
+        // Kameranın yönlerini al
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
         forward.y = 0f;
         right.y = 0f;
 
-        // Hareket yönünü hesapla
-        moveDirection = forward * verticalInput + right * horizontalInput;
-        moveDirection.Normalize(); // Hareket vektörünü normalize et
-
-        // Karakteri hareket yönüne doğru döndür
-        Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15); // Yumuşak dönüş
-
-        // Karakteri hareket ettir
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
-
-        // Animasyonları kontrol et
-        if (!animator.GetBool("Run"))
+        // Eğer hareket tuşu varsa, oyuncu kontrolü
+        if (isMoving)
         {
-            animator.SetBool("Run", true); // Eğer "Run" animasyonu aktif değilse başlat
+            moveDirection = forward * verticalInput + right * horizontalInput;
+            moveDirection.Normalize();
+
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15);
+
+            float appliedMoveSpeed = isAttacking ? moveSpeed * attackMoveMultiplier : moveSpeed;
+            transform.position += moveDirection * appliedMoveSpeed * Time.deltaTime;
+        }
+        // Hareket tuşu yok, saldırı animasyonu varsa otomatik ileri hareket
+        else if (isAttacking)
+        {
+            moveDirection = forward; // Sadece ileriye doğru hareket
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15);
+
+            transform.position += moveDirection * attackAutoMoveSpeed * Time.deltaTime;
+        }
+        else
+        {
+            moveDirection = Vector3.zero;
         }
 
         // Debug Log
-        Debug.Log($"Position: {transform.position}, Rotation: {transform.rotation.eulerAngles}");
+        Debug.Log($"Position: {transform.position}, Rotation: {transform.rotation.eulerAngles}, IsAttacking: {isAttacking}");
     }
 }
