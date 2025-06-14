@@ -73,7 +73,7 @@ public class AnimationController : MonoBehaviour
 
     private int comboIndex = 0;
     private float attackTimer = 0f;
-    private float comboCooldown = 0.6f; // animasyonlar arası süre
+    private float comboCooldown = 0.5f; // animasyonlar arası süre
 
     void Start()
     {
@@ -106,7 +106,7 @@ public class AnimationController : MonoBehaviour
             if (attackTimer >= comboCooldown)
             {
                 attackTimer = 0f;
-                comboIndex = (comboIndex + 1) % 7; // 0–6 arası döner
+                comboIndex = (comboIndex + 1) % 5; // 0–4arası döner
                 animator.SetInteger("ComboIndex", comboIndex);
             }
         }

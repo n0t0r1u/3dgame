@@ -109,13 +109,13 @@ using UnityEngine;
 
 public class PlayerMovement1 : MonoBehaviour
 {
-    public Transform cameraTransform; // Kameranın Transform bileşeni
-    public float moveSpeed = 5.0f;    // Karakterin hareket hızı
-    public float attackMoveMultiplier = 2.0f; // Saldırı sırasında hareket hızı çarpanı
-    public float attackAutoMoveSpeed = 2.0f; // Saldırı sırasında otomatik ileri hareket hızı
-    public Animator animator;         // Animator bileşeni
+    public Transform cameraTransform;
+    public float moveSpeed = 4.0f;
+    public float attackMoveMultiplier = 1.0f;
+    public float attackAutoMoveSpeed = 1.0f;
+    public Animator animator;
 
-    private Vector3 moveDirection;    // Hareket yönü
+    private Vector3 moveDirection;
 
     void Start()
     {
@@ -124,17 +124,25 @@ public class PlayerMovement1 : MonoBehaviour
 
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        bool isMoving = (horizontalInput != 0 || verticalInput != 0);
-
         // Saldırı var mı kontrol et (ör. sol mouse tuşu)
         bool isAttacking = Input.GetMouseButton(0);
         animator.SetBool("IsAttacking", isAttacking);
 
+        // Saldırı ANINDA, hareket girişlerini (WASD) tamamen yok say!
+        float horizontalInput = 0f;
+        float verticalInput = 0f;
+        bool isMoving = false;
+
+        if (!isAttacking)
+        {
+            // Sadece saldırı yoksa hareket girişlerini al
+            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
+            isMoving = (horizontalInput != 0 || verticalInput != 0);
+        }
+
         // Hareket animasyonunu yönet
-        animator.SetBool("Run", isMoving || isAttacking); // Saldırıda da Run'ı true yap!
+        animator.SetBool("Run", isMoving || isAttacking);
 
         // Kameranın yönlerini al
         Vector3 forward = cameraTransform.forward;
@@ -142,7 +150,6 @@ public class PlayerMovement1 : MonoBehaviour
         forward.y = 0f;
         right.y = 0f;
 
-        // Eğer hareket tuşu varsa, oyuncu kontrolü
         if (isMoving)
         {
             moveDirection = forward * verticalInput + right * horizontalInput;
@@ -151,13 +158,11 @@ public class PlayerMovement1 : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15);
 
-            float appliedMoveSpeed = isAttacking ? moveSpeed * attackMoveMultiplier : moveSpeed;
-            transform.position += moveDirection * appliedMoveSpeed * Time.deltaTime;
+            transform.position += moveDirection * moveSpeed * Time.deltaTime;
         }
-        // Hareket tuşu yok, saldırı animasyonu varsa otomatik ileri hareket
         else if (isAttacking)
         {
-            moveDirection = forward; // Sadece ileriye doğru hareket
+            moveDirection = forward;
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15);
 

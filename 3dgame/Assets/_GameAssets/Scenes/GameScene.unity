@@ -851,7 +851,7 @@ Animator:
   m_GameObject: {fileID: 743608676}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cfb6455ff4a447e4a983bba0f332fad5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8730a8f304616f746901b5b83aaab4e0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -877,8 +877,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 330585546}
   moveSpeed: 5
-  attackMoveMultiplier: 2
-  attackAutoMoveSpeed: 2
+  attackMoveMultiplier: 1
+  attackAutoMoveSpeed: 1
   animator: {fileID: 0}
 --- !u!114 &743608682
 MonoBehaviour:
