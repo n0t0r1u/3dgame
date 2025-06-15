@@ -1106,7 +1106,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1149,7 +1149,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -1703,6 +1703,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.200231, y: 1.7378767, z: 0.2450017}
   m_Center: {x: 0.95074743, y: 0.70772517, z: 0.028434072}
+--- !u!1 &761014505 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+  m_PrefabInstance: {fileID: 1677304152}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &761014508
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761014505}
+  m_Mesh: {fileID: -1445107091153370975, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
 --- !u!1 &782923615 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2538657680401534658, guid: 516f5b8c780f050499e83e3e45588ae9, type: 3}
@@ -3790,6 +3803,66 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.200231, y: 1.7378767, z: 0.24500181}
   m_Center: {x: 0.95064825, y: 0.70772684, z: 0.028395882}
+--- !u!1001 &1677304152
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 44.711994
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.0031137
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 63.59331
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_Name
+      value: Parasite L Starkie
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 761014508}
+  m_SourcePrefab: {fileID: 100100000, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
 --- !u!1001 &1679104406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5043,3 +5116,4 @@ SceneRoots:
   - {fileID: 1590409431}
   - {fileID: 1474834544}
   - {fileID: 1413231522}
+  - {fileID: 1677304152}
