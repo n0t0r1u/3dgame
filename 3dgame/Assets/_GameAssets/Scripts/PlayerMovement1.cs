@@ -138,6 +138,11 @@ public class PlayerMovement1 : MonoBehaviour
         if (isMoving)
         {
             moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
+
+            // Karakteri hareket yönüne döndür
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+            // Dönüşü yumuşatmak için Slerp kullanabilirsin, anında dönsün istiyorsan direkt ata
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15f);
         }
         else
         {

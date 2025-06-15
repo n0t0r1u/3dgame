@@ -906,7 +906,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &330585545
 Camera:
   m_ObjectHideFlags: 0
@@ -1251,7 +1251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.133
+      value: 3.182
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1303,9 +1303,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 761014510}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 761014511}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 919132147610328074}
@@ -1856,10 +1853,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.41205883
-  m_Height: 1.8595088
+  m_Radius: 0.30587834
+  m_Height: 1.755101
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8437785, z: 0.048298836}
+  m_Center: {x: 0, y: 0.7915746, z: 0.0030984879}
 --- !u!95 &743608680
 Animator:
   serializedVersion: 7
@@ -1896,8 +1893,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 88818843}
   moveSpeed: 5
-  attackMoveMultiplier: 1
-  attackAutoMoveSpeed: 1
   animator: {fileID: 0}
 --- !u!114 &743608682
 MonoBehaviour:
@@ -1968,28 +1963,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!195 &761014511
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132147610328073}
-  m_Enabled: 0
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 4
-  m_Acceleration: 16
-  avoidancePriority: 50
-  m_AngularSpeed: 240
-  m_StoppingDistance: 3
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &782923615 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2538657680401534658, guid: 516f5b8c780f050499e83e3e45588ae9, type: 3}
@@ -5126,11 +5099,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6bd19fec56119944af654636f903e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  patrolState: 0
   playerTransform: {fileID: 743608677}
-  followDistance: 10
+  followDistance: 8
+  attackAnimDistance: 2
   attackDistance: 1
-  moveSpeed: 2
+  moveSpeed: 4
+  patrolSpeed: 1
   animator: {fileID: 0}
+  patrolCenter: {x: 0, y: 0, z: 0}
+  patrolRadius: 10
 --- !u!136 &919132147610328075
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5150,10 +5128,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2.1614692
+  m_Radius: 0.32615662
+  m_Height: 2.1876907
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9400617, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &919132147610328076
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5384,6 +5362,7 @@ SceneRoots:
   - {fileID: 88818843}
   - {fileID: 330585546}
   - {fileID: 1130076000}
+  - {fileID: 394774016}
   - {fileID: 1679104406}
   - {fileID: 801888415}
   - {fileID: 1217977339}
@@ -5401,4 +5380,3 @@ SceneRoots:
   - {fileID: 1590409431}
   - {fileID: 1474834544}
   - {fileID: 1413231522}
-  - {fileID: 394774016}
