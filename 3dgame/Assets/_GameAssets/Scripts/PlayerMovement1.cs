@@ -111,40 +111,25 @@ public class PlayerMovement1 : MonoBehaviour
 {
     public Transform cameraTransform;
     public float moveSpeed = 4.0f;
-    public float attackMoveMultiplier = 1.0f;
-    public float attackAutoMoveSpeed = 1.0f;
     public Animator animator;
 
+    private Rigidbody rb;
     private Vector3 moveDirection;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        // Saldırı var mı kontrol et (ör. sol mouse tuşu)
-        bool isAttacking = Input.GetMouseButton(0);
-        animator.SetBool("IsAttacking", isAttacking);
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+        bool isMoving = (horizontalInput != 0 || verticalInput != 0);
 
-        // Saldırı ANINDA, hareket girişlerini (WASD) tamamen yok say!
-        float horizontalInput = 0f;
-        float verticalInput = 0f;
-        bool isMoving = false;
+        animator.SetBool("Run", isMoving);
 
-        if (!isAttacking)
-        {
-            // Sadece saldırı yoksa hareket girişlerini al
-            horizontalInput = Input.GetAxis("Horizontal");
-            verticalInput = Input.GetAxis("Vertical");
-            isMoving = (horizontalInput != 0 || verticalInput != 0);
-        }
-
-        // Hareket animasyonunu yönet
-        animator.SetBool("Run", isMoving || isAttacking);
-
-        // Kameranın yönlerini al
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
         forward.y = 0f;
@@ -152,28 +137,25 @@ public class PlayerMovement1 : MonoBehaviour
 
         if (isMoving)
         {
-            moveDirection = forward * verticalInput + right * horizontalInput;
-            moveDirection.Normalize();
-
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15);
-
-            transform.position += moveDirection * moveSpeed * Time.deltaTime;
-        }
-        else if (isAttacking)
-        {
-            moveDirection = forward;
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15);
-
-            transform.position += moveDirection * attackAutoMoveSpeed * Time.deltaTime;
+            moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
         }
         else
         {
             moveDirection = Vector3.zero;
         }
+    }
 
-        // Debug Log
-        Debug.Log($"Position: {transform.position}, Rotation: {transform.rotation.eulerAngles}, IsAttacking: {isAttacking}");
+    void FixedUpdate()
+    {
+        // Hareketi fizik güncellemesinde uygula
+        if (moveDirection != Vector3.zero)
+        {
+            rb.linearVelocity = moveDirection * moveSpeed + new Vector3(0, rb.linearVelocity.y, 0);
+        }
+        else
+        {
+            // Tuşlar bırakıldıysa velocity'yi anında sıfırla (yukarıdan düşmeyi engellemeyecek şekilde)
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+        }
     }
 }
