@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class teleport : MonoBehaviour
+public class Teleport : MonoBehaviour
 {
     public Transform player;          // Işınlanacak oyuncu
     public Transform destination;     // Hedef nokta

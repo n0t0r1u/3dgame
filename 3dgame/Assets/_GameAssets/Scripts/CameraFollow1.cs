@@ -19,14 +19,14 @@
 //}
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow1 : MonoBehaviour
 {
     public Transform player; // Bağlı olduğu karakter
     public Vector3 offset; // Kamera konumunu karaktere göre kaydırma
     public float mouseSensitivity = 100f; // Fare hassasiyeti
     public float pitchMin = -30f; // Minimum dikey açı
     public float pitchMax = 60f; // Maksimum dikey açı
-    public Camera camera;
+    public Camera mainCamera;
 
     private float pitch = 0f; // Yukarı-aşağı dönüş açısı
     private float yaw = 0f; // Sağ-sol dönüş açısı
@@ -34,7 +34,7 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked; // Fare imlecini kilitle
-        offset = camera.transform.position - player.transform.position;
+        offset = mainCamera.transform.position - player.transform.position;
     }
 
     void LateUpdate()
