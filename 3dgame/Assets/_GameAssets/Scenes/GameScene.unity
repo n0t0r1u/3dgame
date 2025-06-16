@@ -705,6 +705,63 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.200231, y: 1.7378767, z: 0.2450017}
   m_Center: {x: 0.95072454, y: 0.70772517, z: 0.028453145}
+--- !u!1001 &185879626
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 48.96
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.101
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 69.394
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_Name
+      value: Parasite L Starkie (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
 --- !u!1 &190591551 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2691389075318091328, guid: 516f5b8c780f050499e83e3e45588ae9, type: 3}
@@ -5621,6 +5678,7 @@ SceneRoots:
   - {fileID: 88818843}
   - {fileID: 330585546}
   - {fileID: 1130076000}
+  - {fileID: 185879626}
   - {fileID: 394774016}
   - {fileID: 1679104406}
   - {fileID: 801888415}
