@@ -5447,7 +5447,7 @@ MonoBehaviour:
   patrolState: 0
   playerTransform: {fileID: 743608677}
   followDistance: 8
-  attackAnimDistance: 2
+  attackAnimDistance: 1.4
   attackDistance: 1
   moveSpeed: 4
   patrolSpeed: 1
