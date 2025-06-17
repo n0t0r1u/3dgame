@@ -1455,6 +1455,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Parasite L Starkie
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 2190329752880227948, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.373
@@ -1484,6 +1488,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 919132147610328078}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 919132147610328079}
+    - targetCorrespondingSourceObject: {fileID: 2715566404302941441, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 675376825}
+    - targetCorrespondingSourceObject: {fileID: 2715566404302941441, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 675376826}
   m_SourcePrefab: {fileID: 100100000, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
 --- !u!1 &410087039
 GameObject:
@@ -1968,6 +1981,48 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2002313, y: 1.7378767, z: 0.24500173}
   m_Center: {x: 0.95069796, y: 0.70772517, z: 0.028418817}
+--- !u!1 &675376823 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2715566404302941441, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+  m_PrefabInstance: {fileID: 394774016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &675376825
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675376823}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.17852922
+  m_Height: 0.35705844
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &675376826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675376823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a9680832fc9bf4997c978ededc623c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 200
+  attackCooldown: 2.633
 --- !u!1 &696023789
 GameObject:
   m_ObjectHideFlags: 0
@@ -2970,7 +3025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b295797fc5f54e34dbe770e6c19352c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.101
+      value: 3.243
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b295797fc5f54e34dbe770e6c19352c0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5598,6 +5653,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   HealthBarPrefabToSpawn: {fileID: 8459761256327841958, guid: 8d33425d7a2a5394ba6dc22e7de6306c, type: 3}
+--- !u!114 &919132147610328079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147610328073}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a9680832fc9bf4997c978ededc623c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 200
+  attackCooldown: 2.633
 --- !u!1001 &1821911521223183831
 PrefabInstance:
   m_ObjectHideFlags: 0
