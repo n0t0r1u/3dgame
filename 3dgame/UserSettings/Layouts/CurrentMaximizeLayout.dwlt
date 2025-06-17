@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 15362
+  controlID: 15647
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -97,7 +97,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 0
-  controlID: 15363
+  controlID: 15648
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 15364
+  controlID: 15649
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -467,13 +467,13 @@ MonoBehaviour:
       layout: 4
       size: {x: 0, y: 0}
       sizeOverridden: 0
-    - dockPosition: 0
-      containerId: Floating
+    - dockPosition: 1
+      containerId: overlay-toolbar__top
       displayed: 1
       id: Tool Settings
-      index: 0
-      contents: '{"m_Layout":4,"m_Collapsed":false,"m_Floating":true,"m_FloatingSnapOffset":{"x":-310.0009765625,"y":0.0009765625},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":1,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
-      floating: 1
+      index: 3
+      contents: '{"m_Layout":4,"m_Collapsed":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":-310.0009765625,"y":0.0009765625},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":1,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
+      floating: 0
       collapsed: 0
       snapOffset: {x: -310.00098, y: 0.0009765625}
       snapOffsetDelta: {x: 0, y: 0}
@@ -597,7 +597,7 @@ MonoBehaviour:
       containerId: Floating
       displayed: 1
       id: SceneView/CamerasOverlay
-      index: 1
+      index: 0
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Floating":true,"m_FloatingSnapOffset":{"x":-294.4010009765625,"y":-310.4000244140625},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":3,"m_Size":{"x":250.40000915527345,"y":252.79998779296876},"m_SizeOverridden":true}'
       floating: 1
       collapsed: 0
@@ -670,15 +670,15 @@ MonoBehaviour:
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
   m_SceneLighting: 1
-  m_2DMode: 0
+  m_2DMode: 1
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 39.23491, y: 4.575916, z: 62.542915}
+    m_Target: {x: 867.0429, y: 469.1335, z: -566.8275}
     speed: 2
-    m_Value: {x: 39.23491, y: 4.575916, z: 62.542915}
+    m_Value: {x: 859.50507, y: 471.30658, z: -566.99866}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -706,7 +706,7 @@ MonoBehaviour:
       m_Size: {x: 0, y: 0}
     yGrid:
       m_Fade:
-        m_Target: 1
+        m_Target: 0
         speed: 2
         m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
@@ -714,9 +714,9 @@ MonoBehaviour:
       m_Size: {x: 1, y: 1}
     zGrid:
       m_Fade:
-        m_Target: 0
+        m_Target: 1
         speed: 2
-        m_Value: 0
+        m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
@@ -724,17 +724,17 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.0033775126, y: 0.99305075, z: -0.11401291, w: -0.029503308}
+    m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
-    m_Value: {x: -0.0033775126, y: 0.99305075, z: -0.11401292, w: -0.02950331}
+    m_Value: {x: 0.0000000038043404, y: 0.00000071077085, z: -0.000000049341985, w: 1}
   m_Size:
-    m_Target: 1.647171
+    m_Target: 363.17545
     speed: 2
-    m_Value: 1.647171
+    m_Value: 380.28842
   m_Ortho:
-    m_Target: 0
+    m_Target: 1
     speed: 2
-    m_Value: 0
+    m_Value: 1
   m_CameraSettings:
     m_Speed: 2
     m_SpeedNormalized: 1
@@ -748,7 +748,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.20436123, y: 0.67303896, z: -0.20180501, w: -0.68157387}
+  m_LastSceneViewRotation: {x: 0.0053239046, y: 0.9946735, z: -0.06905061, w: 0.076540805}
   m_LastSceneViewOrtho: 0
   m_Viewpoint:
     m_SceneView: {fileID: 6}
@@ -1890,7 +1890,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 15144
+  controlID: 15560
   draggingID: 0
 --- !u!114 &12
 MonoBehaviour:
@@ -1956,10 +1956,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 82ae0000
-      m_LastClickedID: 44674
-      m_ExpandedIDs: 5054ffffd273ffff08faffff0cfaffff10faffff14faffff2cfaffff30faffff94faffff98faffff9cfaffffc8faffffccfaffff30b00000
+      scrollPos: {x: 0, y: 405}
+      m_SelectedIDs: 240ffeff
+      m_LastClickedID: -127196
+      m_ExpandedIDs: 2e10feffa810feff5054ffffd273ffff08faffff0cfaffff10faffff14faffff2cfaffff30faffff94faffff98faffff9cfaffffc8faffffccfaffff30b00000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -2057,7 +2057,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_GameAssets/Scripts
+    - Assets/_GameAssets/NoobGameDev/Health System For Dummies/System/Bar/Prefabs
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -2102,24 +2102,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 249}
-    m_SelectedIDs: 82ae0000
+    scrollPos: {x: 0, y: 129}
+    m_SelectedIDs: 240ffeff
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff0000000048b000007ab00000f6b000007cc000007ec0000080c0000082c0000084c0000086c0000088c000008ac000008cc000008ec0000090c0000092c0000094c0000096c0000098c000009ac000009cc000009ec00000a0c00000a2c00000a4c00000a6c00000a8c00000aac00000acc00000aec00000b0c00000b2c00000b4c00000b6c00000b8c00000bac00000bcc00000bec00000c0c00000c2c00000c4c00000c6c00000c8c00000cac00000ccc00000cec00000d0c00000d2c00000d4c00000d6c00000d8c00000dac00000dcc00000dec00000e0c00000e2c00000e4c00000e6c00000e8c00000eac00000ecc00000eec00000f0c00000f2c00000f4c00000f6c00000f8c00000fac00000fcc00000fec0000000c1000002c1000004c1000006c1000008c100000ac100000cc100000ec1000010c1000012c1000014c1000016c100001ac100001cc10000fec300002ad400004cd4000062d40000
+    m_ExpandedIDs: ffffffff0000000048b000007ab00000f6b000007cc000007ec0000080c0000082c0000084c0000086c0000088c000008ac000008cc000008ec0000090c0000092c0000094c0000096c0000098c000009ac000009cc000009ec00000a0c00000a2c00000a4c00000a6c00000a8c00000aac00000acc00000aec00000b0c00000b2c00000b4c00000b6c00000b8c00000bac00000bcc00000bec00000c0c00000c2c00000c4c00000c6c00000c8c00000cac00000ccc00000cec00000d0c00000d2c00000d4c00000d6c00000d8c00000dac00000dcc00000dec00000e0c00000e2c00000e4c00000e6c00000e8c00000eac00000ecc00000eec00000f0c00000f2c00000f4c00000f6c00000f8c00000fac00000fcc00000fec0000000c1000002c1000004c1000006c1000008c100000ac100000cc100000ec1000010c1000012c1000014c1000016c100001ac100001cc10000fec300002ad400002ed4000032d400004cd4000062d40000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: HealthBarCanvas
+      m_OriginalName: HealthBarCanvas
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 54096
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
       m_ClientGUIView: {fileID: 14}
@@ -2131,8 +2131,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 82ae0000
-    m_LastClickedInstanceID: 44674
+    m_SelectedInstanceIDs: 240ffeff
+    m_LastClickedInstanceID: -127196
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300000000000030cb000008a60000a6b8000032030100
     m_RenameOverlay:
