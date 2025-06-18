@@ -2,25 +2,25 @@ using UnityEngine;
 
 public class PlayerAttackTrigger : MonoBehaviour
 {
-    public float damageAmount = 50f;
+    public int minDamage = 10;
+    public int maxDamage = 25;
     public Animator animator; // Inspector'dan atayabilirsin veya Start'ta alabilirsin
 
     private void Start()
     {
-        // Eğer Inspector'da atamazsan, buradan ana objedeki Animator'u alabilirsin
         if (animator == null)
             animator = GetComponentInParent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Sadece saldırı animasyonu aktifse hasar ver
         if (other.CompareTag("Enemy") && animator != null && animator.GetBool("IsAttacking"))
         {
             HealthSystemForDummies enemyHealth = other.GetComponent<HealthSystemForDummies>();
             if (enemyHealth != null)
             {
-                enemyHealth.AddToCurrentHealth(-damageAmount);
+                int randomDamage = Random.Range(minDamage, maxDamage + 1);
+                enemyHealth.AddToCurrentHealth(-randomDamage);
             }
         }
     }

@@ -4,6 +4,7 @@ public class PlayerMovement1 : MonoBehaviour
 {
     public Transform cameraTransform;
     public float moveSpeed = 4.0f;
+    public float attackMoveSpeed = 1.5f;  // Saldırı sırasında hareket hızı
     public Animator animator;
 
     private Rigidbody rb;
@@ -26,6 +27,7 @@ public class PlayerMovement1 : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         animationController = GetComponent<AnimationController>();
+        // attackMoveSpeed değerini istersen Inspector'dan da ayarlayabilirsin
     }
 
     void Update()
@@ -58,25 +60,22 @@ public class PlayerMovement1 : MonoBehaviour
             }
         }
 
+        // Saldırı sırasında yavaş hareket
         if (animationController != null && animationController.isAttacking)
         {
-            moveDirection = Vector3.zero;
-            moveToClick = false;
-            animator.SetBool("Run", false);
-
-            // --- Yön değiştirme ekle ---
-            // Eğer saldırı sırasında W/A/S/D tuşuna basılırsa o yöne bak
-            // Ayrıca mouse ile kameranın açısı değişince de yönü güncelle
+            // Saldırı sırasında hareket tuşlarına basılıysa yönü koru ve yavaş ilerle
             if (isMovingKeyboard)
             {
                 Vector3 forward = cameraTransform.forward;
                 Vector3 right = cameraTransform.right;
                 forward.y = 0f;
                 right.y = 0f;
-                Vector3 desiredDirection = (forward * verticalInput + right * horizontalInput).normalized;
-                if (desiredDirection != Vector3.zero)
+                moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
+
+                // Yönü değiştir
+                if (moveDirection != Vector3.zero)
                 {
-                    Quaternion targetRotation = Quaternion.LookRotation(desiredDirection, Vector3.up);
+                    Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15f);
                 }
             }
@@ -90,7 +89,18 @@ public class PlayerMovement1 : MonoBehaviour
                     Quaternion targetRotation = Quaternion.LookRotation(camForward, Vector3.up);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15f);
                 }
+                // Hareket yoksa dur
+                moveDirection = Vector3.zero;
             }
+            else
+            {
+                moveDirection = Vector3.zero;
+            }
+
+            // "Run" animasyonu sadece hareket varsa aktif olsun
+            animator.SetBool("Run", moveDirection.magnitude > 0f);
+            moveToClick = false; // Saldırı sırasında tıklamayla hareket iptal
+
             return;
         }
 
@@ -139,9 +149,17 @@ public class PlayerMovement1 : MonoBehaviour
 
     void FixedUpdate()
     {
+        float currentSpeed = moveSpeed;
+
+        // Saldırı sırasında ise hareketi yavaşlat
+        if (animationController != null && animationController.isAttacking)
+        {
+            currentSpeed = attackMoveSpeed;
+        }
+
         if (moveDirection != Vector3.zero)
         {
-            rb.velocity = moveDirection * moveSpeed + new Vector3(0, rb.velocity.y, 0);
+            rb.velocity = moveDirection * currentSpeed + new Vector3(0, rb.velocity.y, 0);
         }
         else
         {

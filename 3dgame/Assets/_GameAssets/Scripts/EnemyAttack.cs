@@ -35,10 +35,10 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public float damage = 50f;
+    public int minDamage = 10;
+    public int maxDamage = 25;
     private bool isDead = false;
 
-    // EnemyAI veya health scriptinden bu fonksiyon çağrılacak
     public void SetDead(bool dead)
     {
         isDead = dead;
@@ -46,14 +46,15 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isDead) return; // Eğer ölü ise hasar verme
+        if (isDead) return;
 
         if (other.CompareTag("Player"))
         {
             HealthSystemForDummies playerHealth = other.GetComponent<HealthSystemForDummies>();
             if (playerHealth != null)
             {
-                playerHealth.AddToCurrentHealth(-damage);
+                int randomDamage = Random.Range(minDamage, maxDamage + 1);
+                playerHealth.AddToCurrentHealth(-randomDamage);
             }
         }
     }

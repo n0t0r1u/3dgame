@@ -1374,7 +1374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1f3d8e8a11554a99724ba901ce1eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 100
+  minDamage: 10
+  maxDamage: 25
   animator: {fileID: 0}
 --- !u!1 &393933263 stripped
 GameObject:
@@ -2250,7 +2251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a9680832fc9bf4997c978ededc623c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 500
+  minDamage: 10
+  maxDamage: 25
 --- !u!54 &675376828
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2488,6 +2490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 88818843}
   moveSpeed: 5
+  attackMoveSpeed: 1.5
   animator: {fileID: 0}
 --- !u!114 &743608682
 MonoBehaviour:
@@ -2502,6 +2505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  isAttacking: 0
 --- !u!114 &743608683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5455,7 +5459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1f3d8e8a11554a99724ba901ce1eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 100
+  minDamage: 10
+  maxDamage: 25
   animator: {fileID: 0}
 --- !u!1 &1853628893 stripped
 GameObject:
