@@ -23,6 +23,11 @@ public class PlayerDeathHandler : MonoBehaviour
         // Ölüm animasyonu tetikle
         if (!isAlive && animationController != null)
         {
+            var deathUI = FindObjectOfType<DeathUIManager>();
+            if (deathUI != null)
+                deathUI.ShowDeathPanel();
+            else
+                Debug.LogWarning("DeathUIManager bulunamadı!");
             animationController.PlayDeathAnimation();
         }
 
