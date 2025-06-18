@@ -48,14 +48,6 @@ public class EnemySpawner : MonoBehaviour
         currentEnemy = Instantiate(enemyPrefab, spawnPos, spawnRot);
 
         // Canı ve spawner referansını ata
-        EnemyAI ai = currentEnemy.GetComponent<EnemyAI>();
-        if (ai != null)
-        {
-            ai.spawner = this;
-            // Health'i ayarla
-            var health = ai.GetComponent<HealthSystemForDummies>();
-            if (health != null)
-                health.CurrentHealth = lastHealth;
-        }
+        
     }
 }

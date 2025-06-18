@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour
     public float moveSpeed = 4f;
     public float patrolSpeed = 2f;
     public Animator animator;
-    public EnemySpawner spawner;
+    public GameObject healthBarObject; // Inspector'dan atayacaksın
 
     public Vector3 patrolCenter;
     public float patrolRadius = 5f;
@@ -24,12 +24,12 @@ public class EnemyAI : MonoBehaviour
     private float waitDuration = 1f;
 
     private HealthSystemForDummies healthSystem;
-    private bool isDead = false; 
+    private bool isDead = false;
 
     private HealthSystemForDummies playerHealth;
 
-    private float respawnDelay = 10f;
-    private float disappearDelay = 10f;
+    public float disappearDelay = 5f; // 5 saniye sonra görünmez
+    public float respawnDelay = 10f;  // Görünmezken 10 saniye bekle
 
     void Start()
     {
@@ -46,7 +46,6 @@ public class EnemyAI : MonoBehaviour
             playerHealth = playerTransform.GetComponent<HealthSystemForDummies>();
         }
 
-        // Health event dinle
         if (healthSystem != null)
         {
             healthSystem.OnIsAliveChanged.AddListener(OnIsAliveChanged);
@@ -114,9 +113,6 @@ public class EnemyAI : MonoBehaviour
     void Die()
     {
         isDead = true;
-        if (spawner != null)
-            spawner.SaveEnemyState(this);
-            spawner.StartRespawn();
 
         if (animator != null)
         {
@@ -126,7 +122,6 @@ public class EnemyAI : MonoBehaviour
             animator.SetBool("Walk", false);
         }
 
-        // Hasar veren collider ve scriptlerini devre dışı bırak
         foreach (var col in GetComponentsInChildren<Collider>())
             col.enabled = false;
 
@@ -134,41 +129,48 @@ public class EnemyAI : MonoBehaviour
             atk.SetDead(true);
 
         StartCoroutine(DisappearAndRespawnRoutine());
-        Destroy(gameObject, 3f);
+    }
+    void SetVisible(bool visible)
+    {
+        // MeshRenderer'ları aç/kapat
+        foreach (var renderer in GetComponentsInChildren<Renderer>())
+            renderer.enabled = visible;
+        // İstersen Collider'lar da buraya eklenebilir
+        if (healthBarObject != null)
+        {
+            healthBarObject.SetActive(visible);
+        }
     }
 
     IEnumerator DisappearAndRespawnRoutine()
     {
-        // 10 saniye sonra yok et
+        // 5 saniye sonra görünmez ol
         yield return new WaitForSeconds(disappearDelay);
-        gameObject.SetActive(false);
+         SetVisible(false);
 
-        // 10 saniye yok kal, sonra tekrar doğ
+        // Görünmezken 10 saniye bekle
         yield return new WaitForSeconds(respawnDelay);
 
+        // Yeniden doğ
         Respawn();
     }
 
     void Respawn()
     {
-        // Tam canlı olarak tekrar doğ
-        isDead = false;
-        gameObject.SetActive(true);
+        // Objeyi tekrar aktif et
+        SetVisible(true);
 
-        // Collider ve scriptleri tekrar aç
+        // Sağlığı tam yap
+        if (healthSystem != null)
+            healthSystem.ReviveWithMaximumHealth();
+
+        // Collider ve saldırı scriptlerini tekrar aç
         foreach (var col in GetComponentsInChildren<Collider>())
             col.enabled = true;
-
         foreach (var atk in GetComponentsInChildren<EnemyAttack>())
             atk.SetDead(false);
 
-        // Sağlığı max yap
-        if (healthSystem != null)
-        {
-            healthSystem.ReviveWithMaximumHealth();
-        }
-
-        // Konum ve AI reset
+        // Konumu ve AI state'i resetle
         transform.position = patrolCenter;
         SetNewPatrolTarget();
         patrolState = PatrolState.MovingRandom;
@@ -183,6 +185,8 @@ public class EnemyAI : MonoBehaviour
             animator.SetBool("Run", false);
             animator.SetBool("Walk", false);
         }
+
+        isDead = false;
     }
 
     void Patrol()
