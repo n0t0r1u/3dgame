@@ -21,6 +21,9 @@ public class EnemyAI : MonoBehaviour
     private float movingRandomDuration = 3f;
     private float waitDuration = 1f;
 
+    // EKLENDİ: Player health referansı
+    private HealthSystemForDummies playerHealth;
+
     void Start()
     {
         if (animator == null)
@@ -29,11 +32,43 @@ public class EnemyAI : MonoBehaviour
         SetNewPatrolTarget();
         patrolState = PatrolState.MovingRandom;
         patrolTimer = 0f;
+
+        // EKLENDİ: Player health referansını al
+        if (playerTransform != null)
+        {
+            playerHealth = playerTransform.GetComponent<HealthSystemForDummies>();
+        }
     }
 
     void Update()
     {
-        // Oyuncu takibi ve saldırı önceliği
+        // EKLENDİ: Player hayatta mı kontrolü
+        bool playerIsAlive = true;
+        if (playerHealth != null)
+            playerIsAlive = playerHealth.IsAlive;
+
+        // Oyuncu hayatta değilse, patrol moduna dön
+        if (!playerIsAlive)
+        {
+            animator.SetBool("IsAttacking", false);
+            animator.SetBool("Run", false);
+            animator.SetBool("Walk", false);
+
+            // Patrol state'e dönmeyi sağla (sadece ilk kez yap)
+            if (patrolState != PatrolState.MovingRandom && patrolState != PatrolState.WaitingAfterRandom &&
+                patrolState != PatrolState.ReturningCenter && patrolState != PatrolState.WaitingAtCenter)
+            {
+                patrolState = PatrolState.MovingRandom;
+                patrolTimer = 0f;
+                SetNewPatrolTarget();
+            }
+
+            // Patrol davranışını devam ettir
+            Patrol();
+            return;
+        }
+
+        // Oyuncu hayattaysa, mevcut davranışları uygula
         if (playerTransform != null)
         {
             float playerDistance = Vector3.Distance(transform.position, playerTransform.position);
@@ -56,6 +91,12 @@ public class EnemyAI : MonoBehaviour
         }
 
         // PATROL MODU
+        Patrol();
+    }
+
+    // DEVRIYE DAVRANIŞLARINI FONKSİYONA AYIRDIK
+    void Patrol()
+    {
         animator.SetBool("IsAttacking", false);
         animator.SetBool("Run", false);
 
@@ -90,7 +131,6 @@ public class EnemyAI : MonoBehaviour
                 MoveTowards(patrolCenter, patrolSpeed);
                 if (Vector3.Distance(transform.position, patrolCenter) < 0.1f)
                 {
-                    // Pozisyonu tam merkeze çekiyoruz, kesin takılmasın
                     transform.position = patrolCenter;
                     animator.SetBool("Walk", false);
                     patrolTimer = 0f;

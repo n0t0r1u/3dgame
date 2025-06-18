@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -28,6 +28,24 @@ public class EnemyAttack : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             playerHealth = null; // Temas bittiğinde referansı temizle
+        }
+    }
+}*/
+using UnityEngine;
+
+public class EnemyAttack : MonoBehaviour
+{
+    public float damage = 50f;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            HealthSystemForDummies playerHealth = other.GetComponent<HealthSystemForDummies>();
+            if (playerHealth != null)
+            {
+                playerHealth.AddToCurrentHealth(-damage);
+            }
         }
     }
 }

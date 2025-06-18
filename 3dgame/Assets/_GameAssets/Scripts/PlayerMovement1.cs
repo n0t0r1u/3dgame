@@ -115,15 +115,24 @@ public class PlayerMovement1 : MonoBehaviour
 
     private Rigidbody rb;
     private Vector3 moveDirection;
+        private bool isDead = false;
+
+    public void SetDead(bool dead)
+    {
+        isDead = dead;
+    }
+
 
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        
     }
 
     void Update()
     {
+        if (isDead) return;
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
         bool isMoving = (horizontalInput != 0 || verticalInput != 0);

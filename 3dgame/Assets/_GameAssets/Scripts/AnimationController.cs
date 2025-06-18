@@ -75,6 +75,8 @@ public class AnimationController : MonoBehaviour
     private float attackTimer = 0f;
     private float comboCooldown = 0.5f; // animasyonlar arası süre
 
+    private bool isDead = false;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -82,7 +84,7 @@ public class AnimationController : MonoBehaviour
 
     void Update()
     {
-        if (animator == null) return;
+        if (animator == null || isDead) return;
 
         // Hareket kontrolü
         bool isMoving = false;
@@ -117,5 +119,12 @@ public class AnimationController : MonoBehaviour
             animator.SetInteger("ComboIndex", comboIndex);
         }
     }
-}
 
+    // Ölüm animasyonunu tetikleyen fonksiyon
+    public void PlayDeathAnimation()
+    {
+        if (isDead) return;
+        isDead = true;
+        animator.SetTrigger("Die");
+    }
+}
