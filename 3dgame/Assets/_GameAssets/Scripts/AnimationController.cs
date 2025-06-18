@@ -11,7 +11,6 @@ public class AnimationController : MonoBehaviour
 
     private bool isDead = false;
 
-    // Ekstra: Saldırı sırasında hareketi PlayerMovement1 engelleyecek
     [HideInInspector] public bool isAttacking = false;
 
     void Start()
@@ -24,6 +23,7 @@ public class AnimationController : MonoBehaviour
         if (animator == null || isDead) return;
 
         // Hareket kontrolü
+  
         // Saldırı kontrolü
         isAttacking = Input.GetKey(KeyCode.Space);
         animator.SetBool("IsAttacking", isAttacking);
@@ -48,7 +48,6 @@ public class AnimationController : MonoBehaviour
         }
     }
 
-    // Ölüm animasyonunu tetikleyen fonksiyon
     public void PlayDeathAnimation()
     {
         if (isDead) return;

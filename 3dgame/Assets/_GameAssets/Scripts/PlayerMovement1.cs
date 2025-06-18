@@ -10,11 +10,8 @@ public class PlayerMovement1 : MonoBehaviour
     private Vector3 moveDirection;
     private bool isDead = false;
 
-    // Mouse tıklama ile hareket için
     private bool moveToClick = false;
     private Vector3 clickTarget;
-
-    // Ekstra: AnimationController referansı
     private AnimationController animationController;
 
     public void SetDead(bool dead)
@@ -35,15 +32,6 @@ public class PlayerMovement1 : MonoBehaviour
     {
         if (isDead)
         {
-            animator.SetBool("Run", false);
-            return;
-        }
-
-        // Saldırı sırasında hareket engeli:
-        if (animationController != null && animationController.isAttacking)
-        {
-            moveDirection = Vector3.zero;
-            moveToClick = false;
             animator.SetBool("Run", false);
             return;
         }
@@ -70,6 +58,43 @@ public class PlayerMovement1 : MonoBehaviour
             }
         }
 
+        if (animationController != null && animationController.isAttacking)
+        {
+            moveDirection = Vector3.zero;
+            moveToClick = false;
+            animator.SetBool("Run", false);
+
+            // --- Yön değiştirme ekle ---
+            // Eğer saldırı sırasında W/A/S/D tuşuna basılırsa o yöne bak
+            // Ayrıca mouse ile kameranın açısı değişince de yönü güncelle
+            if (isMovingKeyboard)
+            {
+                Vector3 forward = cameraTransform.forward;
+                Vector3 right = cameraTransform.right;
+                forward.y = 0f;
+                right.y = 0f;
+                Vector3 desiredDirection = (forward * verticalInput + right * horizontalInput).normalized;
+                if (desiredDirection != Vector3.zero)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(desiredDirection, Vector3.up);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15f);
+                }
+            }
+            else if (Input.GetMouseButton(1)) // Sağ tuş ile kamera döndürülürse
+            {
+                // Karakteri kameranın baktığı yöne çevir
+                Vector3 camForward = cameraTransform.forward;
+                camForward.y = 0f;
+                if (camForward != Vector3.zero)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(camForward, Vector3.up);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15f);
+                }
+            }
+            return;
+        }
+
+        // Saldırı yoksa eski hareket sistemi
         if (isMovingKeyboard)
         {
             moveToClick = false;
@@ -109,7 +134,6 @@ public class PlayerMovement1 : MonoBehaviour
             moveDirection = Vector3.zero;
         }
 
-        // Hareket varsa animasyon true, yoksa false
         animator.SetBool("Run", moveDirection.magnitude > 0f);
     }
 
