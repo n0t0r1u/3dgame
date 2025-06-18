@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class PlayerMovement1 : MonoBehaviour
@@ -15,6 +14,9 @@ public class PlayerMovement1 : MonoBehaviour
     private bool moveToClick = false;
     private Vector3 clickTarget;
 
+    // Ekstra: AnimationController referansı
+    private AnimationController animationController;
+
     public void SetDead(bool dead)
     {
         isDead = dead;
@@ -26,12 +28,22 @@ public class PlayerMovement1 : MonoBehaviour
         Cursor.visible = true;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        animationController = GetComponent<AnimationController>();
     }
 
     void Update()
     {
         if (isDead)
         {
+            animator.SetBool("Run", false);
+            return;
+        }
+
+        // Saldırı sırasında hareket engeli:
+        if (animationController != null && animationController.isAttacking)
+        {
+            moveDirection = Vector3.zero;
+            moveToClick = false;
             animator.SetBool("Run", false);
             return;
         }
@@ -98,7 +110,6 @@ public class PlayerMovement1 : MonoBehaviour
         }
 
         // Hareket varsa animasyon true, yoksa false
-        // >>> Buradaki satır animasyonun her karede güncellenmesini sağlar <<<
         animator.SetBool("Run", moveDirection.magnitude > 0f);
     }
 

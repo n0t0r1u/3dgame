@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class AnimationController : MonoBehaviour
@@ -12,6 +11,9 @@ public class AnimationController : MonoBehaviour
 
     private bool isDead = false;
 
+    // Ekstra: Saldırı sırasında hareketi PlayerMovement1 engelleyecek
+    [HideInInspector] public bool isAttacking = false;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -22,39 +24,24 @@ public class AnimationController : MonoBehaviour
         if (animator == null || isDead) return;
 
         // Hareket kontrolü
-        bool isMoving = false;
-        foreach (KeyCode key in movementKeys)
-        {
-            if (Input.GetKey(key))
-            {
-                isMoving = true;
-                break;
-            }
-        }
-        animator.SetBool("Run", isMoving);
-        
-        if (Input.GetMouseButton(0))
-        {
-            isMoving = true;
-        }
-        animator.SetBool("Run", isMoving);
-
-        // Saldırı kontrolü (basılı tutulunca)
-        bool isAttacking = Input.GetKey(KeyCode.Space);
+        // Saldırı kontrolü
+        isAttacking = Input.GetKey(KeyCode.Space);
         animator.SetBool("IsAttacking", isAttacking);
 
         if (isAttacking)
         {
+            animator.SetBool("Run", false); // Saldırı sırasında koşma kapalı
             attackTimer += Time.deltaTime;
             if (attackTimer >= comboCooldown)
             {
                 attackTimer = 0f;
-                comboIndex = (comboIndex + 1) % 5; // 0–4arası döner
+                comboIndex = (comboIndex + 1) % 5;
                 animator.SetInteger("ComboIndex", comboIndex);
             }
         }
         else
         {
+            
             comboIndex = 0;
             attackTimer = 0f;
             animator.SetInteger("ComboIndex", comboIndex);
