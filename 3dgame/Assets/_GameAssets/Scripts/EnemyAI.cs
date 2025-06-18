@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     public float moveSpeed = 4f;
     public float patrolSpeed = 2f;
     public Animator animator;
+    public EnemySpawner spawner;
 
     public Vector3 patrolCenter;
     public float patrolRadius = 5f;
@@ -21,8 +23,13 @@ public class EnemyAI : MonoBehaviour
     private float movingRandomDuration = 3f;
     private float waitDuration = 1f;
 
-    // EKLENDİ: Player health referansı
+    private HealthSystemForDummies healthSystem;
+    private bool isDead = false; 
+
     private HealthSystemForDummies playerHealth;
+
+    private float respawnDelay = 10f;
+    private float disappearDelay = 10f;
 
     void Start()
     {
@@ -33,28 +40,41 @@ public class EnemyAI : MonoBehaviour
         patrolState = PatrolState.MovingRandom;
         patrolTimer = 0f;
 
-        // EKLENDİ: Player health referansını al
+        healthSystem = GetComponent<HealthSystemForDummies>();
         if (playerTransform != null)
         {
             playerHealth = playerTransform.GetComponent<HealthSystemForDummies>();
+        }
+
+        // Health event dinle
+        if (healthSystem != null)
+        {
+            healthSystem.OnIsAliveChanged.AddListener(OnIsAliveChanged);
+        }
+    }
+
+    private void OnIsAliveChanged(bool isAlive)
+    {
+        if (!isAlive && !isDead)
+        {
+            Die();
         }
     }
 
     void Update()
     {
-        // EKLENDİ: Player hayatta mı kontrolü
+        if (isDead) return;
+
         bool playerIsAlive = true;
         if (playerHealth != null)
             playerIsAlive = playerHealth.IsAlive;
 
-        // Oyuncu hayatta değilse, patrol moduna dön
         if (!playerIsAlive)
         {
             animator.SetBool("IsAttacking", false);
             animator.SetBool("Run", false);
             animator.SetBool("Walk", false);
 
-            // Patrol state'e dönmeyi sağla (sadece ilk kez yap)
             if (patrolState != PatrolState.MovingRandom && patrolState != PatrolState.WaitingAfterRandom &&
                 patrolState != PatrolState.ReturningCenter && patrolState != PatrolState.WaitingAtCenter)
             {
@@ -63,12 +83,10 @@ public class EnemyAI : MonoBehaviour
                 SetNewPatrolTarget();
             }
 
-            // Patrol davranışını devam ettir
             Patrol();
             return;
         }
 
-        // Oyuncu hayattaysa, mevcut davranışları uygula
         if (playerTransform != null)
         {
             float playerDistance = Vector3.Distance(transform.position, playerTransform.position);
@@ -90,11 +108,83 @@ public class EnemyAI : MonoBehaviour
             }
         }
 
-        // PATROL MODU
         Patrol();
     }
 
-    // DEVRIYE DAVRANIŞLARINI FONKSİYONA AYIRDIK
+    void Die()
+    {
+        isDead = true;
+        if (spawner != null)
+            spawner.SaveEnemyState(this);
+            spawner.StartRespawn();
+
+        if (animator != null)
+        {
+            animator.SetTrigger("Die");
+            animator.SetBool("IsAttacking", false);
+            animator.SetBool("Run", false);
+            animator.SetBool("Walk", false);
+        }
+
+        // Hasar veren collider ve scriptlerini devre dışı bırak
+        foreach (var col in GetComponentsInChildren<Collider>())
+            col.enabled = false;
+
+        foreach (var atk in GetComponentsInChildren<EnemyAttack>())
+            atk.SetDead(true);
+
+        StartCoroutine(DisappearAndRespawnRoutine());
+        Destroy(gameObject, 3f);
+    }
+
+    IEnumerator DisappearAndRespawnRoutine()
+    {
+        // 10 saniye sonra yok et
+        yield return new WaitForSeconds(disappearDelay);
+        gameObject.SetActive(false);
+
+        // 10 saniye yok kal, sonra tekrar doğ
+        yield return new WaitForSeconds(respawnDelay);
+
+        Respawn();
+    }
+
+    void Respawn()
+    {
+        // Tam canlı olarak tekrar doğ
+        isDead = false;
+        gameObject.SetActive(true);
+
+        // Collider ve scriptleri tekrar aç
+        foreach (var col in GetComponentsInChildren<Collider>())
+            col.enabled = true;
+
+        foreach (var atk in GetComponentsInChildren<EnemyAttack>())
+            atk.SetDead(false);
+
+        // Sağlığı max yap
+        if (healthSystem != null)
+        {
+            healthSystem.ReviveWithMaximumHealth();
+        }
+
+        // Konum ve AI reset
+        transform.position = patrolCenter;
+        SetNewPatrolTarget();
+        patrolState = PatrolState.MovingRandom;
+        patrolTimer = 0f;
+
+        // Animasyonları resetle
+        if (animator != null)
+        {
+            animator.Rebind();
+            animator.Update(0f);
+            animator.SetBool("IsAttacking", false);
+            animator.SetBool("Run", false);
+            animator.SetBool("Walk", false);
+        }
+    }
+
     void Patrol()
     {
         animator.SetBool("IsAttacking", false);
@@ -111,7 +201,6 @@ public class EnemyAI : MonoBehaviour
                     patrolTimer = 0f;
                     patrolState = PatrolState.WaitingAfterRandom;
                     animator.SetBool("Walk", false);
-                    Debug.Log("Patrol: Reached random target, now waiting.");
                 }
                 break;
 
@@ -122,7 +211,6 @@ public class EnemyAI : MonoBehaviour
                 {
                     patrolTimer = 0f;
                     patrolState = PatrolState.ReturningCenter;
-                    Debug.Log("Patrol: Done waiting, returning to center.");
                 }
                 break;
 
@@ -135,7 +223,6 @@ public class EnemyAI : MonoBehaviour
                     animator.SetBool("Walk", false);
                     patrolTimer = 0f;
                     patrolState = PatrolState.WaitingAtCenter;
-                    Debug.Log("Patrol: Arrived at center, waiting at center.");
                 }
                 break;
 
@@ -147,7 +234,6 @@ public class EnemyAI : MonoBehaviour
                     patrolTimer = 0f;
                     SetNewPatrolTarget();
                     patrolState = PatrolState.MovingRandom;
-                    Debug.Log("Patrol: Selecting new random target.");
                 }
                 break;
         }

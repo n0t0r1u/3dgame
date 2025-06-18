@@ -36,9 +36,18 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     public float damage = 50f;
+    private bool isDead = false;
+
+    // EnemyAI veya health scriptinden bu fonksiyon çağrılacak
+    public void SetDead(bool dead)
+    {
+        isDead = dead;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (isDead) return; // Eğer ölü ise hasar verme
+
         if (other.CompareTag("Player"))
         {
             HealthSystemForDummies playerHealth = other.GetComponent<HealthSystemForDummies>();
