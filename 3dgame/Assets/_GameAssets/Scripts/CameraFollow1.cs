@@ -21,40 +21,44 @@ using UnityEngine;
 
 public class CameraFollow1 : MonoBehaviour
 {
-    public Transform player; // Bağlı olduğu karakter
-    public Vector3 offset; // Kamera konumunu karaktere göre kaydırma
-    public float mouseSensitivity = 100f; // Fare hassasiyeti
-    public float pitchMin = -30f; // Minimum dikey açı
-    public float pitchMax = 60f; // Maksimum dikey açı
+    public Transform player;
+    public Vector3 offset;
+    public float mouseSensitivity = 100f;
+    public float pitchMin = -30f;
+    public float pitchMax = 60f;
     public Camera mainCamera;
 
-    private float pitch = 0f; // Yukarı-aşağı dönüş açısı
-    private float yaw = 0f; // Sağ-sol dönüş açısı
+    private float pitch = 0f;
+    private float yaw = 0f;
+    private Vector3 lookPoint;
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked; // Fare imlecini kilitle
+        Cursor.lockState = CursorLockMode.Locked;
         offset = mainCamera.transform.position - player.transform.position;
+        lookPoint = player.position + Vector3.up * 1.5f;
     }
 
     void LateUpdate()
     {
-        // Fare hareketlerini al
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        // Sağ tuş ile kamera döndürme
+        if (Input.GetMouseButton(1))
+        {
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        // Kamerayı döndür (Yaw ve Pitch)
-        yaw += mouseX;
-        pitch -= mouseY;
-        pitch = Mathf.Clamp(pitch, pitchMin, pitchMax);
+            yaw += mouseX;
+            pitch -= mouseY;
+            pitch = Mathf.Clamp(pitch, pitchMin, pitchMax);
+        }
 
-        // Kameranın karakter etrafında dönmesini sağla
+        // Kamera pozisyonunu güncelle
         Quaternion rotation = Quaternion.Euler(pitch, yaw, 0f);
-        transform.position = player.position + rotation * offset;
+        Vector3 desiredPosition = player.position + rotation * offset;
+        transform.position = desiredPosition;
 
-        // Kamerayı karaktere döndür
-        transform.LookAt(player.position + Vector3.up * 1.5f); // Karakterin üst kısmına bakar
+        // Kamera her zaman oyuncunun üst kısmına bakar
+        lookPoint = player.position + Vector3.up * 1.5f;
+        transform.LookAt(lookPoint);
     }
 }
-
-

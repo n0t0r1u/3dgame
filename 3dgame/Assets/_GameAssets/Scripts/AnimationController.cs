@@ -97,9 +97,15 @@ public class AnimationController : MonoBehaviour
             }
         }
         animator.SetBool("Run", isMoving);
+        
+        if (Input.GetMouseButton(0))
+        {
+            isMoving = true;
+        }
+        animator.SetBool("Run", isMoving);
 
         // Saldırı kontrolü (basılı tutulunca)
-        bool isAttacking = Input.GetMouseButton(0);
+        bool isAttacking = Input.GetKey(KeyCode.Space);
         animator.SetBool("IsAttacking", isAttacking);
 
         if (isAttacking)
