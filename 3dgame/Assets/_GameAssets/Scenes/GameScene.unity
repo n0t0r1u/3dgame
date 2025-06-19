@@ -955,7 +955,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &330585544
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2150,8 +2150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a9680832fc9bf4997c978ededc623c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDamage: 100
-  maxDamage: 250
+  minDamage: 500
+  maxDamage: 500
 --- !u!54 &675376828
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6206,6 +6206,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4453291293524535982, guid: a7253481050e11742985199ff412569e, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800629452985779766, guid: a7253481050e11742985199ff412569e, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6917047099580503002, guid: a7253481050e11742985199ff412569e, type: 3}

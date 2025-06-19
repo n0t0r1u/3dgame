@@ -24,7 +24,6 @@ public class DeathUIManager : MonoBehaviour
         retryButton.gameObject.SetActive(true);
         mainMenuButton.gameObject.SetActive(true);
 
-        // Oyuncu öldüğü konumu kaydet
         if (player != null)
         {
             GameManager.Instance.lastDeathPosition = player.transform.position;
@@ -41,34 +40,43 @@ public class DeathUIManager : MonoBehaviour
 
     void OnRetryClicked()
     {
-        // Sahneyi yeniden yükle
         SceneManager.sceneLoaded += RespawnAtDeathPosition;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void OnMainMenuClicked()
     {
-        // Ana menüye özel spawn noktası ayarla
         SceneManager.sceneLoaded += RespawnAtMainMenuPosition;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void RespawnAtDeathPosition(Scene scene, LoadSceneMode mode)
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
         {
-            player.transform.position = GameManager.Instance.lastDeathPosition;
+            playerObj.transform.position = GameManager.Instance.lastDeathPosition;
+            player = playerObj;
+
+            // Kamera scriptini bul ve yeni player'ı ata
+            CameraFollow1 camFollow = FindObjectOfType<CameraFollow1>();
+            if (camFollow != null)
+                camFollow.SetPlayer(player.transform);
         }
         SceneManager.sceneLoaded -= RespawnAtDeathPosition;
     }
 
     void RespawnAtMainMenuPosition(Scene scene, LoadSceneMode mode)
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
         {
-            player.transform.position = GameManager.Instance.mainMenuSpawnPosition;
+            playerObj.transform.position = GameManager.Instance.mainMenuSpawnPosition;
+            player = playerObj;
+
+            CameraFollow1 camFollow = FindObjectOfType<CameraFollow1>();
+            if (camFollow != null)
+                camFollow.SetPlayer(player.transform);
         }
         SceneManager.sceneLoaded -= RespawnAtMainMenuPosition;
     }

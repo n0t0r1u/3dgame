@@ -1,22 +1,3 @@
-//using UnityEngine;
-
-//public class CameraFallow : MonoBehaviour
-//{
-
-//    public Transform player;// Oyuncunun transform'u
-//    public Vector3 offset;
-//    public Camera camera;// Kameranın oyuncuya olan uzaklığı
-//    private void Start()
-//    {
-//        offset = camera.transform.position- player.transform.position ;
-//    }
-//    void LateUpdate()
-//    {
-
-//        // Kamerayı oyuncuya göre hareket ettir
-//        transform.position = player.position + offset;
-//    }
-//}
 using UnityEngine;
 
 public class CameraFollow1 : MonoBehaviour
@@ -35,12 +16,20 @@ public class CameraFollow1 : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        if (player == null)
+            FindPlayer();
         offset = mainCamera.transform.position - player.transform.position;
         lookPoint = player.position + Vector3.up * 1.5f;
     }
 
     void LateUpdate()
     {
+        if (player == null)
+        {
+            FindPlayer();
+            if (player == null) return;
+        }
+
         // Sağ tuş ile kamera döndürme
         if (Input.GetMouseButton(1))
         {
@@ -60,5 +49,22 @@ public class CameraFollow1 : MonoBehaviour
         // Kamera her zaman oyuncunun üst kısmına bakar
         lookPoint = player.position + Vector3.up * 1.5f;
         transform.LookAt(lookPoint);
+    }
+
+    // Player'ı sahnede tag ile bulmak için fonksiyon
+    public void FindPlayer()
+    {
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
+            player = playerObj.transform;
+    }
+
+    // Dışarıdan kolayca çağrılabilmesi için
+    public void SetPlayer(Transform newPlayer)
+    {
+        player = newPlayer;
+        // Offset ve diğer parametreleri yeniden hesapla
+        offset = mainCamera.transform.position - player.transform.position;
+        lookPoint = player.position + Vector3.up * 1.5f;
     }
 }
