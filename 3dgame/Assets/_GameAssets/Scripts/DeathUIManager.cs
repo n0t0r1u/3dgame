@@ -63,7 +63,6 @@ public class DeathUIManager : MonoBehaviour
             if (camFollow != null)
             {
                 camFollow.SetPlayer(player.transform);
-                camFollow.RecalculateOffset();
             }
 
         }

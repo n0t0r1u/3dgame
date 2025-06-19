@@ -18,7 +18,8 @@ public class CameraFollow1 : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         if (player == null)
             FindPlayer();
-        offset = mainCamera.transform.position - player.transform.position;
+        // Başlangıçta offset ve rotasyon hesapla
+        RecalculateOffsetAndAngles();
         lookPoint = player.position + Vector3.up * 1.5f;
     }
 
@@ -30,7 +31,6 @@ public class CameraFollow1 : MonoBehaviour
             if (player == null) return;
         }
 
-        // Sağ tuş ile kamera döndürme
         if (Input.GetMouseButton(1))
         {
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
@@ -41,17 +41,14 @@ public class CameraFollow1 : MonoBehaviour
             pitch = Mathf.Clamp(pitch, pitchMin, pitchMax);
         }
 
-        // Kamera pozisyonunu güncelle
         Quaternion rotation = Quaternion.Euler(pitch, yaw, 0f);
         Vector3 desiredPosition = player.position + rotation * offset;
         transform.position = desiredPosition;
 
-        // Kamera her zaman oyuncunun üst kısmına bakar
         lookPoint = player.position + Vector3.up * 1.5f;
         transform.LookAt(lookPoint);
     }
 
-    // Player'ı sahnede tag ile bulmak için fonksiyon
     public void FindPlayer()
     {
         GameObject playerObj = GameObject.FindWithTag("Player");
@@ -59,14 +56,24 @@ public class CameraFollow1 : MonoBehaviour
             player = playerObj.transform;
     }
 
-    // Dışarıdan kolayca çağrılabilmesi için
     public void SetPlayer(Transform newPlayer)
     {
         player = newPlayer;
-        // Offset ve diğer parametreleri yeniden hesapla
-        offset = mainCamera.transform.position - player.transform.position;
-        lookPoint = player.position + Vector3.up * 1.5f;
     }
+
+    // Offset ve kamera açısı hesaplama
+    public void RecalculateOffsetAndAngles()
+    {
+        if (player != null && mainCamera != null)
+        {
+            offset = mainCamera.transform.position - player.transform.position;
+            // Kamera rotasyonunu world -> local olarak çözümle
+            Vector3 angles = mainCamera.transform.rotation.eulerAngles;
+            yaw = angles.y;
+            pitch = angles.x;
+        }
+    }
+
     public void RecalculateOffset()
     {
         if (player != null && mainCamera != null)
