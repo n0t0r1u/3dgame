@@ -9,7 +9,7 @@ public class AnimationController : MonoBehaviour
     private float attackTimer = 0f;
     private float comboCooldown = 0.5f; // animasyonlar arası süre
 
-    private bool isDead = false;
+    public bool isDead = false;
 
     [HideInInspector] public bool isAttacking = false;
 

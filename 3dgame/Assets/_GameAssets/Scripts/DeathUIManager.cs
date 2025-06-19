@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class DeathUIManager : MonoBehaviour
 {
@@ -40,47 +39,59 @@ public class DeathUIManager : MonoBehaviour
 
     void OnRetryClicked()
     {
-        SceneManager.sceneLoaded += RespawnAtDeathPosition;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        RespawnPlayer();
     }
 
     void OnMainMenuClicked()
     {
-        SceneManager.sceneLoaded += RespawnAtMainMenuPosition;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // Ana menüye dönmek istiyorsan buraya sahne yükleme koyabilirsin
+        // SceneManager.LoadScene("MainMenu");
     }
 
-    void RespawnAtDeathPosition(Scene scene, LoadSceneMode mode)
+    void RespawnPlayer()
     {
         GameObject playerObj = GameObject.FindWithTag("Player");
         if (playerObj != null)
         {
+            // 1. Pozisyonu sıfırla
             playerObj.transform.position = GameManager.Instance.lastDeathPosition;
-            player = playerObj;
 
-            // Kamera scriptini bul ve yeni player'ı ata
-            CameraFollow1 camFollow = FindObjectOfType<CameraFollow1>();
-            if (camFollow != null)
+            // 2. Canı fulle
+            var health = playerObj.GetComponent<HealthSystemForDummies>();
+            if (health != null)
             {
-                camFollow.SetPlayer(player.transform);
+                health.ReviveWithMaximumHealth();
             }
 
-        }
-        SceneManager.sceneLoaded -= RespawnAtDeathPosition;
-    }
+            // 3. Animasyonu sıfırla
+            var anim = playerObj.GetComponent<Animator>();
+            if (anim != null)
+            {
+                anim.Rebind();
+                anim.Update(0f);
+            }
 
-    void RespawnAtMainMenuPosition(Scene scene, LoadSceneMode mode)
-    {
-        GameObject playerObj = GameObject.FindWithTag("Player");
-        if (playerObj != null)
+            // 4. Hareket scriptini aktif yap
+            var move = playerObj.GetComponent<PlayerMovement1>();
+            if (move != null)
+            {
+                move.enabled = true;
+                move.SetDead(false); // isDead değişkenini sıfırla
+            }
+
+            // 5. Death animasyonunu sıfırla
+            var animCtrl = playerObj.GetComponent<AnimationController>();
+            if (animCtrl != null)
+            {
+                animCtrl.isDead = false;
+            }
+
+            // 6. UI panelini kapat
+            HideDeathPanel();
+        }
+        else
         {
-            playerObj.transform.position = GameManager.Instance.mainMenuSpawnPosition;
-            player = playerObj;
-
-            CameraFollow1 camFollow = FindObjectOfType<CameraFollow1>();
-            if (camFollow != null)
-                camFollow.SetPlayer(player.transform);
+            Debug.LogWarning("Oyuncu bulunamadı!");
         }
-        SceneManager.sceneLoaded -= RespawnAtMainMenuPosition;
     }
 }
