@@ -21,6 +21,7 @@ public class InventoryUI : MonoBehaviour
             if (inventoryPanel.activeSelf)
                 UpdateUI();
         }
+
     }
 
     public void UpdateUI()

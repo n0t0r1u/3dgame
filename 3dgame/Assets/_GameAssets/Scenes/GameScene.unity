@@ -1951,6 +1951,7 @@ MonoBehaviour:
   deathPanel: {fileID: 638841447}
   retryButton: {fileID: 1478575916}
   mainMenuButton: {fileID: 1919892403}
+  player: {fileID: 743608676}
 --- !u!4 &604103882
 Transform:
   m_ObjectHideFlags: 0
@@ -2149,8 +2150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a9680832fc9bf4997c978ededc623c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDamage: 10
-  maxDamage: 25
+  minDamage: 100
+  maxDamage: 250
 --- !u!54 &675376828
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4744,6 +4745,7 @@ GameObject:
   - component: {fileID: 1682786551}
   - component: {fileID: 1682786550}
   - component: {fileID: 1682786554}
+  - component: {fileID: 1682786555}
   m_Layer: 0
   m_Name: Tp2
   m_TagString: Untagged
@@ -4863,6 +4865,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1682786555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682786549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb304210e7ea8974a9d6edadd56cbf33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastDeathPosition: {x: 0, y: 0, z: 0}
+  mainMenuSpawnPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1697539109
 GameObject:
   m_ObjectHideFlags: 0
@@ -6148,6 +6164,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3109320594977051932, guid: a7253481050e11742985199ff412569e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3109320594977051932, guid: a7253481050e11742985199ff412569e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3109320594977051932, guid: a7253481050e11742985199ff412569e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3933965592387196795, guid: a7253481050e11742985199ff412569e, type: 3}
       propertyPath: m_Camera
       value: 
@@ -6160,6 +6188,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1378802045}
+    - target: {fileID: 4051902513956952224, guid: a7253481050e11742985199ff412569e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 743608676}
     - target: {fileID: 4051902513956952224, guid: a7253481050e11742985199ff412569e, type: 3}
       propertyPath: m_Enabled
       value: 0
