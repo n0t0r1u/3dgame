@@ -67,4 +67,9 @@ public class CameraFollow1 : MonoBehaviour
         offset = mainCamera.transform.position - player.transform.position;
         lookPoint = player.position + Vector3.up * 1.5f;
     }
+    public void RecalculateOffset()
+    {
+        if (player != null && mainCamera != null)
+            offset = mainCamera.transform.position - player.transform.position;
+    }
 }

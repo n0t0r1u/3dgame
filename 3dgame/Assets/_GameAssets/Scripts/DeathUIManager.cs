@@ -61,7 +61,11 @@ public class DeathUIManager : MonoBehaviour
             // Kamera scriptini bul ve yeni player'ı ata
             CameraFollow1 camFollow = FindObjectOfType<CameraFollow1>();
             if (camFollow != null)
+            {
                 camFollow.SetPlayer(player.transform);
+                camFollow.RecalculateOffset();
+            }
+
         }
         SceneManager.sceneLoaded -= RespawnAtDeathPosition;
     }
