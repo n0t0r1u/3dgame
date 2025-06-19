@@ -8,6 +8,7 @@ public class DeathUIManager : MonoBehaviour
     public Button retryButton;
     public Button mainMenuButton;
     public GameObject player; // Oyuncu referansı
+    public GameObject mainMenuPlane;
 
     void Start()
     {
@@ -43,11 +44,23 @@ public class DeathUIManager : MonoBehaviour
     }
 
     void OnMainMenuClicked()
+{
+    GameObject playerObj = GameObject.FindWithTag("Player");
+    if (playerObj != null && mainMenuPlane != null)
     {
-        // Ana menüye dönmek istiyorsan buraya sahne yükleme koyabilirsin
-        // SceneManager.LoadScene("MainMenu");
+        // Plane’in merkezinin X,Z’si ve üst yüzeyinin Y’si
+        Vector3 planePos = mainMenuPlane.transform.position;
+        Vector3 newPos = new Vector3(planePos.x, planePos.y + 0.1f, planePos.z); // +1f karakterin yerde kalmaması için
+        playerObj.transform.position = newPos;
+        GameManager.Instance.lastDeathPosition = newPos;
+        RespawnPlayer();
+    }
+    else
+    {
+        Debug.LogWarning("Oyuncu veya plane bulunamadı!");
     }
 
+}
     void RespawnPlayer()
     {
         GameObject playerObj = GameObject.FindWithTag("Player");
