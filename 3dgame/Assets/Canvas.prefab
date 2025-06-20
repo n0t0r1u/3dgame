@@ -408,9 +408,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a221ce5f0f52884392829d2e62a7e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
   deathPanel: {fileID: 2095664884111248416}
   retryButton: {fileID: 3109320594977051932}
   mainMenuButton: {fileID: 4466750575403436251}
+  player: {fileID: 0}
+  mainMenuPlane: {fileID: 0}
 --- !u!1 &6193447349085910332
 GameObject:
   m_ObjectHideFlags: 0
