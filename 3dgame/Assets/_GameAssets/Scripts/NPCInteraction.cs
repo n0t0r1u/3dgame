@@ -14,6 +14,7 @@ public class NPCInteraction : MonoBehaviour
         {
             if (currentNPC != null)
             {
+                currentNPC.ResetDialogue(); // Diyalogları sıfırla
                 string dialogueText = currentNPC.GetNextDialogue();
                 dialogueUI.ShowDialogue(currentNPC, playerQuestSystem, dialogueText);
             }

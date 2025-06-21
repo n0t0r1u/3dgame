@@ -12,6 +12,7 @@ public class DeathUIManager : MonoBehaviour
 
     void Start()
     {
+        canvas.SetActive(true);
         HideDeathPanel();
         retryButton.onClick.AddListener(OnRetryClicked);
         mainMenuButton.onClick.AddListener(OnMainMenuClicked);

@@ -15,6 +15,19 @@ public class DialogueUI : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("TestDialogueUI Start çalışıyor!");
+        if (acceptButton == null)
+            acceptButton = GameObject.Find("AcceptButton").GetComponent<Button>();
+        if (declineButton == null)
+            declineButton = GameObject.Find("DeclineButton").GetComponent<Button>();
+
+        Debug.Log("acceptButton: " + acceptButton);
+        Debug.Log("declineButton: " + declineButton);
+
+        acceptButton.onClick.AddListener(() => Debug.Log("Accept tıklandı!"));
+        declineButton.onClick.AddListener(() => Debug.Log("Decline tıklandı!"));
+        Debug.Log("DialogueUI Start Çalıştı");
+        dialoguePanel.SetActive(false);
         acceptButton.gameObject.SetActive(false);
         declineButton.gameObject.SetActive(false);
 
@@ -43,21 +56,27 @@ public class DialogueUI : MonoBehaviour
     }
 
     void OnAcceptQuest()
-    {
-        if (currentNPC != null && playerQuestSystem != null && currentNPC.questToGive != null)
-        {
-            playerQuestSystem.AcceptQuest(currentNPC.questToGive);
-            dialogueTextTMP.text = "Görev kabul edildi!";
-            acceptButton.gameObject.SetActive(false);
-            declineButton.gameObject.SetActive(false);
-        }
-    }
+{
+    Debug.Log("OnAcceptQuest Çalıştı");
+
+    if (currentNPC == null) { Debug.Log("currentNPC null!"); return; }
+    if (playerQuestSystem == null) { Debug.Log("playerQuestSystem null!"); return; }
+    if (currentNPC.questToGive == null) { Debug.Log("currentNPC.questToGive null!"); return; }
+
+    playerQuestSystem.AcceptQuest(currentNPC.questToGive);
+    Debug.Log("Görev kabul edildi: " + currentNPC.questToGive.questName);
+
+    dialogueTextTMP.text = "Görev kabul edildi!";
+    acceptButton.gameObject.SetActive(false);
+    declineButton.gameObject.SetActive(false);
+}
 
     void OnDeclineQuest()
     {
         dialogueTextTMP.text = "Görev reddedildi.";
         acceptButton.gameObject.SetActive(false);
         declineButton.gameObject.SetActive(false);
+        HideDialogue();
         // İstersen NPC’ye flag koyabilirsin: currentNPC.questDeclined = true;
     }
 
