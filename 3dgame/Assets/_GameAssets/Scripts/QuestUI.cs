@@ -37,8 +37,11 @@ public class QuestUI : MonoBehaviour
         StringBuilder sb = new StringBuilder();
         foreach (var quest in playerQuestSystem.activeQuests)
         {
+            if (quest.isCompleted) continue;
             sb.AppendLine($"{quest.questName}");
             sb.AppendLine(quest.description);
+            if (quest.questType == QuestType.KillZombie)
+            sb.AppendLine($"Zombiler öldürüldü: {quest.killCount} / {quest.killTarget}");
             sb.AppendLine();
         }
         questListText.text = sb.ToString();

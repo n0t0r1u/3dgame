@@ -9,11 +9,12 @@ public class NPCInteraction : MonoBehaviour
     public TMP_Text dialogueTextTMP; // UI'daki yazı alanı (Inspector'dan bağla)
 
     private NPC currentNPC;
-/*************  ✨ Windsurf Command ⭐  *************/
-        /// <summary>
-        /// Etkileşim mümkünse ve E tuşuna basıldığında NPC ile diyaloğa girer.
-        /// </summary>
-/*******  1eda7972-2d91-470a-ae1f-0b5f2f305ea9  *******/    private bool canInteract = false;
+    /*************  ✨ Windsurf Command ⭐  *************/
+    /// <summary>
+    /// Etkileşim mümkünse ve E tuşuna basıldığında NPC ile diyaloğa girer.
+    /// </summary>
+    /*******  1eda7972-2d91-470a-ae1f-0b5f2f305ea9  *******/
+    private bool canInteract = false;
 
     void Update()
     {
@@ -61,8 +62,34 @@ public class NPCInteraction : MonoBehaviour
             {
                 playerQuestSystem.AcceptQuest(currentNPC.questToGive);
             }
+            if (currentNPC.name == "Wolfman") // Veya uygun kontrol
+            {
+            foreach (var quest in playerQuestSystem.activeQuests)
+            {
+                if (quest.questType == QuestType.TalkToNPC && quest.questName.Contains("Wolfman"))
+                {
+                    quest.isCompleted = true;
+                    break;
+                }
+            }
+            playerQuestSystem.RemoveCompletedQuests();
+            }
             currentNPC.ResetDialogue();
             dialogueUI.SetActive(false);
         }
     }
+    public void CompleteGoToWolfmanQuest()
+{
+    foreach(var quest in playerQuestSystem.activeQuests)
+{
+    Debug.Log($"Quest kontrol ediliyor: {quest.questName} - {quest.questType}");
+    if (quest.questType == QuestType.TalkToNPC && quest.questName.Contains("Wolfman"))
+    {
+        quest.isCompleted = true;
+        Debug.Log("Wolfman görevi tamamlandı ve isCompleted yapıldı!");
+        break;
+    }
+}
+    playerQuestSystem.RemoveCompletedQuests();
+}
 }

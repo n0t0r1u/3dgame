@@ -19,4 +19,8 @@ public class PlayerQuestSystem : MonoBehaviour
                 quest.ProgressKill();
         }
     }
+    public void RemoveCompletedQuests()
+    {
+        activeQuests.RemoveAll(q => q.isCompleted);
+    }
 }
