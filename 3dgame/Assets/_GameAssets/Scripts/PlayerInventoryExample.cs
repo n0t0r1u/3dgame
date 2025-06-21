@@ -6,7 +6,7 @@ public class PlayerInventoryExample : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             Inventory.Instance.Add(testItem);
             Debug.Log("Item eklendi: " + testItem.itemName);
