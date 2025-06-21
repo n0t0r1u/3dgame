@@ -116,6 +116,7 @@ public class EnemyAI : MonoBehaviour
         isDead = true;
         rb.velocity = Vector3.zero;
         rb.isKinematic = true;
+        Debug.Log("Düşman öldü: " + gameObject.name);
 
 
         if (animator != null)
@@ -125,6 +126,25 @@ public class EnemyAI : MonoBehaviour
             animator.SetBool("Run", false);
             animator.SetBool("Walk", false);
         }
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+    if (player != null)
+    {
+        Debug.Log("Player bulundu: " + player.name);
+        PlayerQuestSystem questSystem = player.GetComponent<PlayerQuestSystem>();
+        if (questSystem != null)
+        {
+            Debug.Log("PlayerQuestSystem bulundu, ZombieKilled çağrılıyor");
+            questSystem.ZombieKilled();
+        }
+        else
+        {
+            Debug.Log("PlayerQuestSystem bulunamadı!");
+        }
+    }
+    else
+    {
+        Debug.Log("Player bulunamadı!");
+    }
 
         foreach (var col in GetComponentsInChildren<Collider>())
             col.enabled = false;
