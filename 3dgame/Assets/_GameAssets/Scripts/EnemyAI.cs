@@ -134,7 +134,7 @@ public class EnemyAI : MonoBehaviour
         if (questSystem != null)
         {
             Debug.Log("PlayerQuestSystem bulundu, ZombieKilled çağrılıyor");
-            questSystem.ZombieKilled();
+            questSystem.OnZombieKilled();
         }
         else
         {

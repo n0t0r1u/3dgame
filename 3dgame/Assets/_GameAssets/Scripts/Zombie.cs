@@ -8,7 +8,7 @@ public class Zombie : MonoBehaviour
         PlayerQuestSystem playerQuestSystem = FindObjectOfType<PlayerQuestSystem>();
         if (playerQuestSystem != null)
         {
-            playerQuestSystem.ZombieKilled();
+            playerQuestSystem.OnZombieKilled();
         }
         Destroy(gameObject);
     }

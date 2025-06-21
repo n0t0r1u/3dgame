@@ -1629,6 +1629,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &129712162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129712153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f5e1a2152c32443b79712b8c6ed2e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &132114523 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 463adddbbd37bb840b8319b2636122ad, type: 3}
@@ -13407,6 +13419,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 129712161}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 129712162}
     - targetCorrespondingSourceObject: {fileID: 2715566404302941441, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1932462974}
@@ -24632,6 +24647,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1995973491}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1995973497}
     - targetCorrespondingSourceObject: {fileID: 2715566404302941441, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 774512647}
@@ -30599,8 +30617,9 @@ MonoBehaviour:
     questName: Zombileri Yok Et!
     description: "10 zombi \xF6ld\xFCr."
     isCompleted: 0
-    zombieKillTarget: 10
-    zombieKillCount: 0
+    questType: 0
+    killTarget: 10
+    killCount: 0
 --- !u!1 &1662215148 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2894790270330610509, guid: 516f5b8c780f050499e83e3e45588ae9, type: 3}
@@ -38945,6 +38964,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1995973489}
   m_Mesh: {fileID: -1445107091153370975, guid: a78f5ca66df4b41428f4eeb71b8da22f, type: 3}
+--- !u!114 &1995973497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995973489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f5e1a2152c32443b79712b8c6ed2e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2005333680 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2591134332982956883, guid: 516f5b8c780f050499e83e3e45588ae9, type: 3}
