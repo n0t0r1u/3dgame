@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     public float moveSpeed = 4f;
     public float patrolSpeed = 2f;
     public Animator animator;
+    public Rigidbody rb; // Inspector'dan atayacaksın, eğer Rigidbody yoksa ekle
     public GameObject healthBarObject; // Inspector'dan atayacaksın
 
     public Vector3 patrolCenter;
@@ -113,6 +114,9 @@ public class EnemyAI : MonoBehaviour
     void Die()
     {
         isDead = true;
+        rb.velocity = Vector3.zero;
+        rb.isKinematic = true;
+
 
         if (animator != null)
         {
@@ -157,6 +161,7 @@ public class EnemyAI : MonoBehaviour
 
     void Respawn()
     {
+        rb.isKinematic = false;
         // Objeyi tekrar aktif et
         SetVisible(true);
 

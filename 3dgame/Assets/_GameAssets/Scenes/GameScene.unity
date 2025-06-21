@@ -1561,6 +1561,7 @@ MonoBehaviour:
   moveSpeed: 4
   patrolSpeed: 1
   animator: {fileID: 0}
+  rb: {fileID: 129712161}
   healthBarObject: {fileID: 161770606}
   patrolCenter: {x: 0, y: 0, z: 0}
   patrolRadius: 10
@@ -16368,6 +16369,7 @@ MonoBehaviour:
   moveSpeed: 4
   patrolSpeed: 1
   animator: {fileID: 0}
+  rb: {fileID: 1250149931}
   healthBarObject: {fileID: 1275943189}
   patrolCenter: {x: 0, y: 0, z: 0}
   patrolRadius: 10
@@ -30844,6 +30846,7 @@ MonoBehaviour:
   moveSpeed: 4
   patrolSpeed: 1
   animator: {fileID: 0}
+  rb: {fileID: 1678763157}
   healthBarObject: {fileID: 1466111050}
   patrolCenter: {x: 0, y: 0, z: 0}
   patrolRadius: 10
@@ -38906,6 +38909,7 @@ MonoBehaviour:
   moveSpeed: 4
   patrolSpeed: 1
   animator: {fileID: 0}
+  rb: {fileID: 1995973491}
   healthBarObject: {fileID: 1912809281}
   patrolCenter: {x: 0, y: 0, z: 0}
   patrolRadius: 10
@@ -39074,6 +39078,7 @@ MonoBehaviour:
   moveSpeed: 4
   patrolSpeed: 1
   animator: {fileID: 0}
+  rb: {fileID: 2011647244}
   healthBarObject: {fileID: 1728494797}
   patrolCenter: {x: 0, y: 0, z: 0}
   patrolRadius: 10
@@ -45086,6 +45091,7 @@ MonoBehaviour:
   moveSpeed: 4
   patrolSpeed: 1
   animator: {fileID: 0}
+  rb: {fileID: 919132147610328079}
   healthBarObject: {fileID: 1399399789}
   patrolCenter: {x: 0, y: 0, z: 0}
   patrolRadius: 10
