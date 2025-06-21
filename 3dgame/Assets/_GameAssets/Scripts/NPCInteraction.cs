@@ -1,11 +1,12 @@
 using UnityEngine;
-using UnityEngine.UI; // Eğer Text veya Button kullanıyorsan
+using UnityEngine.UI;
+using TMPro; // Eğer Text veya Button kullanıyorsan
 
 public class NPCInteraction : MonoBehaviour
 {
     public PlayerQuestSystem playerQuestSystem;
     public GameObject dialogueUI;
-    public Text dialogueText; // UI'daki yazı alanı (Inspector'dan bağla)
+    public TMP_Text dialogueTextTMP; // UI'daki yazı alanı (Inspector'dan bağla)
 
     private NPC currentNPC;
 /*************  ✨ Windsurf Command ⭐  *************/
@@ -51,7 +52,7 @@ public class NPCInteraction : MonoBehaviour
         string dialogue = currentNPC.GetNextDialogue();
         if (dialogue != null)
         {
-            dialogueText.text = dialogue; // Diyaloğu ekrana yaz
+            dialogueTextTMP.text = dialogue; // Diyaloğu ekrana yaz
         }
         else
         {
