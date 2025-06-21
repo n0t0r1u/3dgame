@@ -30,7 +30,7 @@ public class QuestUI : MonoBehaviour
         }
     }
 
-    void UpdateQuestList()
+    public void UpdateQuestList()
     {
         if (playerQuestSystem == null || questListText == null) return;
 
