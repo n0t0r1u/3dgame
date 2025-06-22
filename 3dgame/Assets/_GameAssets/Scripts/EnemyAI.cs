@@ -133,6 +133,7 @@ public class EnemyAI : MonoBehaviour
         PlayerQuestSystem questSystem = player.GetComponent<PlayerQuestSystem>();
         if (questSystem != null)
         {
+            
             Debug.Log("PlayerQuestSystem bulundu, ZombieKilled çağrılıyor");
             questSystem.OnZombieKilled();
         }

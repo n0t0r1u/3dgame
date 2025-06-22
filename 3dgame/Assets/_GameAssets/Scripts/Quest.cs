@@ -1,5 +1,5 @@
 using UnityEngine;
-public enum QuestType { KillZombie, CollectItem, TalkToNPC }
+public enum QuestType { KillZombie, CollectItem, TalkToNPC, KillBoss }
 
 [System.Serializable]
 public class Quest
@@ -17,6 +17,9 @@ public class Quest
     {
         if (questType == QuestType.KillZombie)
             return killCount >= killTarget;
+
+        if (questType == QuestType.KillBoss)
+        return isCompleted;
         // Diğer görev türleri için ek kontrol
         if (questType == QuestType.TalkToNPC && player != null)
         {

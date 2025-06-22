@@ -12,6 +12,15 @@ public class PlayerQuestSystem : MonoBehaviour
             activeQuests.Add(quest);
     }
 
+    public void OnBossKilled()
+    {
+        foreach (Quest quest in activeQuests)
+    {
+        if (!quest.isCompleted && quest.questType == QuestType.KillBoss)
+            quest.isCompleted = true;
+    }
+    }
+
     public void OnZombieKilled()
     {
         foreach (Quest quest in activeQuests)
@@ -27,8 +36,10 @@ public class PlayerQuestSystem : MonoBehaviour
     public void OnTalkedToNPC(string npcName)
     {
         lastTalkedNpcName = npcName;
+        
         foreach (Quest quest in activeQuests)
         {
+            
             if (!quest.isCompleted && quest.questType == QuestType.TalkToNPC && quest.targetNpcName == npcName)
                 quest.isCompleted = true;
         }

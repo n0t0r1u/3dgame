@@ -14,7 +14,7 @@ public class PlayerAttackTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && animator != null && animator.GetBool("IsAttacking"))
+        if (other.CompareTag("Enemy") || other.CompareTag("Boss") && animator != null && animator.GetBool("IsAttacking"))
         {
             HealthSystemForDummies enemyHealth = other.GetComponent<HealthSystemForDummies>();
             if (enemyHealth != null)
