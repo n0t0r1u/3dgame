@@ -14,11 +14,20 @@ public class PlayerQuestSystem : MonoBehaviour
 
     public void OnBossKilled()
     {
-        foreach (Quest quest in activeQuests)
+         foreach (Quest quest in activeQuests)
     {
-        if (!quest.isCompleted && quest.questType == QuestType.KillBoss)
-            quest.isCompleted = true;
+        // Yalnızca boss görevini ilerlet
+        if (!quest.isCompleted &&
+            quest.questType == QuestType.KillBoss &&
+            quest.killTarget == 1 &&
+            quest.questName == "BOSS'U YEN!")
+        {
+            quest.killCount++;
+            if (quest.killCount >= quest.killTarget)
+                quest.isCompleted = true;
+        }
     }
+    RemoveCompletedQuests();
     }
 
     public void OnZombieKilled()

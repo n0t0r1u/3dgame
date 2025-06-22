@@ -126,6 +126,16 @@ public class EnemyAI : MonoBehaviour
             animator.SetBool("Run", false);
             animator.SetBool("Walk", false);
         }
+        if (CompareTag("Boss"))
+        {
+            GameObject player1 = GameObject.FindGameObjectWithTag("Player");
+            if (player1 != null)
+            {
+                PlayerQuestSystem questSystem = player1.GetComponent<PlayerQuestSystem>();
+                if (questSystem != null)
+                    questSystem.OnBossKilled();
+            }
+        }
         GameObject player = GameObject.FindGameObjectWithTag("Player");
     if (player != null)
     {

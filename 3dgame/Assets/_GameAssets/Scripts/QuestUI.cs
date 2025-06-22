@@ -43,6 +43,10 @@ public class QuestUI : MonoBehaviour
             if (quest.questType == QuestType.KillZombie)
             sb.AppendLine($"Zombiler öldürüldü: {quest.killCount} / {quest.killTarget}");
             sb.AppendLine();
+            if (quest.questType == QuestType.KillBoss)
+            sb.AppendLine($"Boss öldürüldü: {quest.killCount} / {quest.killTarget}");
+            sb.AppendLine();
+            
         }
         questListText.text = sb.ToString();
     }
