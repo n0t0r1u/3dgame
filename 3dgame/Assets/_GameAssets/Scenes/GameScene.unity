@@ -19470,7 +19470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 88818843}
-  moveSpeed: 10
+  moveSpeed: 5
   attackMoveSpeed: 1.5
   animator: {fileID: 0}
 --- !u!114 &743608682
@@ -22637,11 +22637,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2135074836}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &874682328 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439, type: 3}
+  m_PrefabInstance: {fileID: 1289734936}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &874682331 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5516487406859467972, guid: 45e0f06c750176947862c10346226439, type: 3}
   m_PrefabInstance: {fileID: 1289734936}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &874682332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874682328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7166cd730e46a642b07a623e3106c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueUI: {fileID: 301650992}
+  teleportDestination: {fileID: 1969672594}
+--- !u!65 &874682333
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874682328}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.8402, y: 2.841, z: 2.8402}
+  m_Center: {x: 0, y: 0.00050002337, z: 0}
 --- !u!1001 &876959928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34132,7 +34172,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5516487406859467972, guid: 45e0f06c750176947862c10346226439, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1674849360}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 874682332}
+    - targetCorrespondingSourceObject: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 874682333}
   m_SourcePrefab: {fileID: 100100000, guid: 45e0f06c750176947862c10346226439, type: 3}
 --- !u!1001 &1296168254
 PrefabInstance:
@@ -52457,7 +52503,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Wolfman2
   dialogues:
-  - Zombilerin liderini oldurmeye hazirmisin
+  - "Zombilerin liderini oldurmeni istiyorum. Eger kabul ediyosan portaldan ge\xE7ip
+    onu yen!"
   questToGive:
     questName: BOSS'U YEN!
     description: Zombilerin Liderini Yen!

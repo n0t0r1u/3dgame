@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class DialogueUI : MonoBehaviour
 {
@@ -54,6 +55,21 @@ public class DialogueUI : MonoBehaviour
             declineButton.gameObject.SetActive(false);
         }
     }
+    public void ShowCustomDialogue(string text, UnityAction onAccept, UnityAction onDecline)
+{
+    dialoguePanel.SetActive(true);
+    dialogueTextTMP.text = text;
+    // Butonları göster
+    acceptButton.gameObject.SetActive(true);
+    declineButton.gameObject.SetActive(true);
+
+    // Eski listener’ları temizle
+    acceptButton.onClick.RemoveAllListeners();
+    declineButton.onClick.RemoveAllListeners();
+
+    acceptButton.onClick.AddListener(onAccept);
+    declineButton.onClick.AddListener(onDecline);
+}
 
     void OnAcceptQuest()
 {
