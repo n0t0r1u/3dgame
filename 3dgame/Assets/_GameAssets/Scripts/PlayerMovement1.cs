@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement1 : MonoBehaviour
 {
@@ -51,12 +52,15 @@ public class PlayerMovement1 : MonoBehaviour
         // Mouse sol tuşu ile hareket etme
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = cameraTransform.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                clickTarget = hit.point;
-                moveToClick = true;
+                Ray ray = cameraTransform.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    clickTarget = hit.point;
+                    moveToClick = true;
+                }
             }
         }
 
