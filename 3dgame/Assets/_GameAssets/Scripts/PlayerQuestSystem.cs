@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class PlayerQuestSystem : MonoBehaviour
 {
     public List<Quest> activeQuests = new List<Quest>();
+    public string lastTalkedNpcName = "";
 
     public void AcceptQuest(Quest quest)
     {
@@ -22,5 +23,14 @@ public class PlayerQuestSystem : MonoBehaviour
     public void RemoveCompletedQuests()
     {
         activeQuests.RemoveAll(q => q.isCompleted);
+    }
+    public void OnTalkedToNPC(string npcName)
+    {
+        lastTalkedNpcName = npcName;
+        foreach (Quest quest in activeQuests)
+        {
+            if (!quest.isCompleted && quest.questType == QuestType.TalkToNPC && quest.targetNpcName == npcName)
+                quest.isCompleted = true;
+        }
     }
 }
