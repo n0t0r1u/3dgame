@@ -5,6 +5,7 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
     public List<InventorySlot> items = new List<InventorySlot>();
+    public List<InventorySlot> equippedItems = new List<InventorySlot>(); // Kuşanılan itemler için ekledik
     public int space = 20;
 
     private void Awake()
@@ -45,6 +46,31 @@ public class Inventory : MonoBehaviour
                 items[i].count--;
                 if (items[i].count <= 0)
                     items.RemoveAt(i);
+                return;
+            }
+        }
+    }
+
+    // Kuşanma fonksiyonları örnek olarak eklenebilir:
+    public bool Equip(Item item)
+    {
+        // İtem zaten kuşanılmış mı?
+        foreach (InventorySlot slot in equippedItems)
+        {
+            if (slot.item == item)
+                return false;
+        }
+        equippedItems.Add(new InventorySlot(item));
+        return true;
+    }
+
+    public void Unequip(Item item)
+    {
+        for (int i = 0; i < equippedItems.Count; i++)
+        {
+            if (equippedItems[i].item == item)
+            {
+                equippedItems.RemoveAt(i);
                 return;
             }
         }

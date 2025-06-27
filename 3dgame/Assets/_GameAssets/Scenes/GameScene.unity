@@ -4949,6 +4949,9 @@ MonoBehaviour:
   inventoryPanel: {fileID: 1081575763}
   slotPrefab: {fileID: 3589772156635561705, guid: a183302f76ab3584795837bafd258641, type: 3}
   slotsParent: {fileID: 1081575764}
+  equippedPanel: {fileID: 1235760998}
+  equippedSlotPrefab: {fileID: 0}
+  equippedSlotsParent: {fileID: 1235760999}
 --- !u!114 &159793323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13304,6 +13307,9 @@ MonoBehaviour:
   inventoryPanel: {fileID: 493496729}
   slotPrefab: {fileID: 3589772156635561705, guid: a183302f76ab3584795837bafd258641, type: 3}
   slotsParent: {fileID: 493496730}
+  equippedPanel: {fileID: 0}
+  equippedSlotPrefab: {fileID: 0}
+  equippedSlotsParent: {fileID: 0}
 --- !u!114 &493496732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16755,6 +16761,9 @@ MonoBehaviour:
   inventoryPanel: {fileID: 638171404}
   slotPrefab: {fileID: 3589772156635561705, guid: a183302f76ab3584795837bafd258641, type: 3}
   slotsParent: {fileID: 638171405}
+  equippedPanel: {fileID: 0}
+  equippedSlotPrefab: {fileID: 0}
+  equippedSlotsParent: {fileID: 0}
 --- !u!114 &638171407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17673,6 +17682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
+  equippedItems: []
   space: 20
 --- !u!4 &669322647
 Transform:
