@@ -27,7 +27,7 @@ public class InventoryUI : MonoBehaviour
     public void UpdateUI()
     {
         // Önce eski slotları temizle
-        foreach (Transform child in slotsParent)
+       foreach (Transform child in slotsParent)
             Destroy(child.gameObject);
 
         // Envanterdeki her item için slot oluştur
