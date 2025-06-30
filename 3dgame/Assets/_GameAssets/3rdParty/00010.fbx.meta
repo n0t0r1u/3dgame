@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ec43d57a041e07340822e6118ff76dea
+guid: 9e62f2ccbec25dd41b8bdb86681c9654
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -29,38 +29,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: "D:\\zwork\\______\\3__21_______\u01FC____\u05B4\u03F8__\u033C_\\____
-        \u0133____ ____\\_\u05B4\u03F8__\u033C_\\twohand_sword\\run.max"
-      takeName: "D:\\zwork\\______\\3__21_______\u01FC____\u05B4\u03F8__\u033C_\\____
-        \u0133____ ____\\_\u05B4\u03F8__\u033C_\\twohand_sword\\run.max"
-      internalID: 8960526803129619211
-      firstFrame: 0
-      lastFrame: 20
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 0
   meshes:
     lODScreenPercentages: []
