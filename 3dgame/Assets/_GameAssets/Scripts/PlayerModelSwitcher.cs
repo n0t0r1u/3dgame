@@ -27,13 +27,16 @@ public class PlayerModelSwitcher : MonoBehaviour
     void SetModel(bool showA)
     {
         GameObject activeModel = showA ? modelA : modelB;
-        Transform kafaObj = FindDeepChild(activeModel.transform, "Bip01 Head"); // az önceki fonksiyonu kullanabilirsin
+        Transform kafaObj = FindDeepChild(activeModel.transform, "HeadObject"); // az önceki fonksiyonu kullanabilirsin
         if (kafaObj != null)
         {
             // kafaObj artık aktif modeldeki "kafa" tag'li objedir
             // Burada istediğin işlemi yapabilirsin, ör:
             Debug.Log("Kafa objesi bulundu: " + kafaObj.name);
             hair.transform.SetParent(kafaObj, true);
+            hair.transform.localPosition = Vector3.zero; // Saç modelini kafa objesinin konumuna sıfırla
+            hair.transform.localRotation = Quaternion.identity; // Saç modelinin rotasını sıfırla
+            hair.transform.localScale = Vector3.one; // Saç modelinin ölçeğini bir
         }
         else
         {
