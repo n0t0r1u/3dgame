@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Elma
   icon: {fileID: 21300000, guid: e9d4143c19529834981ac6821a04aecd, type: 3}
-  isStackable: 0
-  maxStack: 1
+  isStackable: 1
+  maxStack: 20
